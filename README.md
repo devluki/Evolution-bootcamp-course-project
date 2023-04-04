@@ -2,20 +2,39 @@
 
 Evolution TypeScript Bootcamp final project, BlackJack - classic casino game of luck and strategy.
 
+# Game rules
+
+-   Players are playing against the dealer.
+-   The goal is to have a stronger hand than the dealer without going over 21.
+-   Number cards (2-10) count as face value, Aces count as either 1 or 11, and Kings, Queens, and Jacks count as 10.
+-   The dealer is dealt two cards, and the player is dealt two cards.
+-   The player's cards are dealt face-up, while only the dealer's first card is shown.
+-   Player can decide to Hit, Double, Split, or Stand.
+-   If player hand is closer to 21 than the dealer's hand without going over, player wins.
+-   If the dealer's hand is closer to 21 without going over, player lose.
+-   The dealer must stand on 17 or higher, and draw cards to 16.
+-   Hands of equal value to the dealers are a push, and players bet is returned.
+-   If players hand is 22 or higher (busted), player lose regardless of the value of the dealer's hand.
+-   Player hand automatically stands when it has a value of 21
+
+
 # **PROJECT PLAN**
 
 ## **1. USER STORIES**
 
-_(Description of the app functionality, form a user perspective)_
+_(Description of the app functionality, form a user perspective, from highest to lowest priority)_
 
+-   **As a user, I want to play classic BlackJack.**
+-   **As a user, I want to track current bet value, total win value.**
+-   **As a user, I want to track my wallet balance in real time.**
+-   **As a user, I want to track how much time spent on the game.**
 -   As a user, I want to save a log of all of my games in my account (nice to have).
 -   As a user, I want to keep my balance saved in my account (nice to have).
--   As a user, I want to add/withdraw money.
 -   As a user, I want to choose a seat (nice to have).
 -   As a user, I want to set min/max bets before the game (nice to have).
--   As a user, I want to track my wallet balance in real time.
--   As a user, I want to track current bet value, total win value.
--   As a user, I want to track how much time spent on the game.
+-   As a user, I want to add/withdraw founds.
+
+
 
 ## **2. FEATURES**
 
