@@ -10,11 +10,16 @@ interface DealerProps {
 
 export const Dealer = (props: DealerProps) => {
     const { isBet, isStand, dealerHand, dealerScore } = props;
+
     return (
         <>
             <div style={{ color: "white" }}>
                 <p>Dealer seat</p>
-                <p>Dealer score:{props.isBet && dealerScore}</p>
+                <p>
+                    Dealer score:
+                    {props.isBet && props.isStand && dealerScore}
+                    {props.isBet && !props.isStand && dealerHand[0].getScore}
+                </p>
                 {isBet && (
                     <DealerHand
                         isStand={isStand}

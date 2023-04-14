@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Card, DeckOfCards } from "./components/cardDeck/cardDeck";
 
 import { Player } from "./components/player/Player";
@@ -13,8 +13,8 @@ function App() {
     const [playerHand, setPlayerHand] = useState<Card[]>([]);
     const [dealerHand, setDealerHand] = useState<Card[]>([]);
 
-    const [curPlayerScore, setCurPlayerScore] = useState<number>(0);
-    const [curDealerScore, setCurDealerScore] = useState<number>(0);
+    const playerScore = useRef(0);
+    const dealerScore = useRef(0);
 
     const [isPlayerWins, setisPlayerWins] = useState(false);
     const [isDealerWins, setIsDealerWins] = useState(false);
@@ -33,8 +33,6 @@ function App() {
         setIsStand(false);
         setPlayerHand([]);
         setDealerHand([]);
-        setCurDealerScore(0);
-        setCurPlayerScore(0);
         setisPlayerWins(false);
         setIsDealerWins(false);
         setIsDraw(false);
@@ -42,20 +40,23 @@ function App() {
         setIsDealerBusted(false);
     };
 
-    // const winnerCheck = useCallback(() => {
-    //     if (curDealerScore < curPlayerScore) {
-    //         // console.log("Win check - player");
-    //         setisPlayerWins(true);
-    //         setIsDealerWins(false);
-    //     } else if (curDealerScore > 0 && curDealerScore === curPlayerScore) {
-    //         // console.log("Win check - draw");
-    //         setIsDraw(true);
-    //     } else {
-    //         // console.log("Win check - dealer");
-    //         setisPlayerWins(false);
-    //         setIsDealerWins(true);
-    //     }
-    // }, [curDealerScore, curPlayerScore]);
+    const winnerCheck = () => {
+        console.log(
+            "dealer:",
+            dealerScore.current,
+            "player:",
+            playerScore.current,
+        );
+        if (dealerScore.current < playerScore.current) {
+            setisPlayerWins(true);
+            setIsDealerWins(false);
+        } else if (dealerScore.current !== 0 && dealerScore === playerScore) {
+            setIsDraw(true);
+        } else {
+            setisPlayerWins(false);
+            setIsDealerWins(true);
+        }
+    };
 
     // Generates shoe from number of decks
     const generateShoe = (noOfDecks: number) => {
@@ -96,30 +97,16 @@ function App() {
             setIsDealerBusted(true);
             setBalance((prev) => prev + 15 + 10);
         }
+        if (isPlayer) {
+            playerScore.current = score;
+        }
+        if (!isPlayer) {
+            dealerScore.current = score;
+        }
+
         return score;
     }, []);
-    // const countScore = useCallback(
-    //     (hand: Card[], isPlayer: boolean) => {
-    //         let score: number = 0;
-    //         // let isAce = false;
-    //         if (isPlayer || (!isPlayer && isStand)) {
-    //             hand.map((card) => {
-    //                 // console.log(isAce);
-    //                 return (score += card.getScore);
-    //             });
-    //             if (score > 21 && isPlayer) {
-    //                 setIsPlayerBusted(true);
-    //             } else if (score > 21 && !isPlayer) {
-    //                 setIsDealerBusted(true);
-    //             }
-    //         } else if (!isPlayer && !isStand) {
-    //             score += hand[0].getScore;
-    //         }
 
-    //         return score;
-    //         },
-    //     [isStand],
-    // );
     const Initialize = () => {
         const playerHand = [] as Card[];
         const dealerHand = [] as Card[];
@@ -134,20 +121,14 @@ function App() {
             }
         }
 
-        const curPlayerScore = countScore(playerHand, true);
-        // const curPlayerScore = countScore(playerHand, true);
-        //const curDealerScore = countScore(dealerHand, false);
-        const curDealerScore = dealerHand[0].getScore;
-        console.log(curDealerScore);
+        playerScore.current = countScore(playerHand, true);
+        dealerScore.current = countScore(dealerHand, false);
+
         setBalance((prev) => prev - 10);
         setIsBet((prev) => !prev);
         setShoe(shoeCopy);
         setPlayerHand(playerHand);
-        setCurPlayerScore(curPlayerScore);
-        setCurDealerScore(curDealerScore);
         setDealerHand(dealerHand);
-
-        // return { playerHand, dealerHand };
     };
 
     const hitHandler = useCallback(
@@ -160,30 +141,17 @@ function App() {
             setShoe(shoeCopy);
             if (isPlayer) {
                 setPlayerHand([...playerHand, ...hand]);
-
-                const curPlayerScore = countScore(
+                playerScore.current = countScore(
                     [...playerHand, ...hand],
                     true,
                 );
-
-                // const curPlayerScore = countScore(
-                //     [...playerHand, ...hand],
-                //     true,
-                // );
-
-                setCurPlayerScore(curPlayerScore);
             } else {
                 setDealerHand([...dealerHand, ...hand]);
-                const curDealerScore = countScore(
+
+                dealerScore.current = countScore(
                     [...dealerHand, ...hand],
                     false,
                 );
-
-                // const curDealerScore = countScore(
-                //     [...dealerHand, ...hand],
-                //     false,
-                // );
-                setCurDealerScore(curDealerScore);
             }
         },
         [dealerHand, countScore, playerHand, shoe],
@@ -206,24 +174,15 @@ function App() {
 
     const standHandler = () => {
         setIsStand(true);
-        let curScore = countScore(dealerHand, false);
-        setCurDealerScore(curScore);
-        if (curScore < 17) {
+
+        if (
+            dealerScore.current < 17 &&
+            dealerScore.current < playerScore.current
+        ) {
             hitHandler(false);
         }
-
-        console.log("Scores", curPlayerScore, curScore, curDealerScore);
-        if (curScore > curPlayerScore) {
-            setisPlayerWins(false);
-            setIsDealerWins(true);
-        } else if (curScore < curPlayerScore) {
-            setisPlayerWins(true);
-            setIsDealerWins(false);
-            setBalance((prev) => prev + 15 + 10);
-        } else if (curScore === curPlayerScore) {
-            setIsDraw(true);
-            setBalance((prev) => prev + 10);
-        }
+        console.log(dealerScore, playerScore);
+        winnerCheck();
     };
 
     return (
@@ -232,7 +191,7 @@ function App() {
                 isBet={isBet}
                 isStand={isStand}
                 dealerHand={dealerHand}
-                dealerScore={curDealerScore}
+                dealerScore={dealerScore.current}
             />
             {isPlayerBusted && (
                 <p
@@ -301,7 +260,7 @@ function App() {
                 init={Initialize}
                 onStandHandler={standHandler}
                 onHitHandler={hitHandler}
-                score={curPlayerScore}
+                score={playerScore.current}
                 onReset={resetGame}
                 balance={balance}
             />
