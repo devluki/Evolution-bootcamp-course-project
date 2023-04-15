@@ -51,7 +51,10 @@ function App() {
         if (dealerScore.current < playerScore.current) {
             setisPlayerWins(true);
             setIsDealerWins(false);
-        } else if (dealerScore.current !== 0 && dealerScore === playerScore) {
+        } else if (
+            dealerScore.current !== 0 &&
+            dealerScore.current === playerScore.current
+        ) {
             setIsDraw(true);
         } else {
             setisPlayerWins(false);
@@ -85,21 +88,51 @@ function App() {
         return cards;
     };
 
-    const countScore = useCallback((hand: Card[], isPlayer: boolean) => {
-        let score: number = 0;
-        let isAce = false;
+    const aceScoreHandler = (hand: Card[]) => {
+        let isAceInHand = false;
 
-        hand.map((card, i) => {
-            if (card.getName.toLocaleLowerCase() === "ace") {
-                isAce = true;
-                card.setScore = 10;
+        const aceIndexes: number[] = [];
+
+        for (let i = 0; i < hand.length; i++) {
+            if (hand[i].getName.toLocaleLowerCase() === "ace") {
+                isAceInHand = true;
+
+                aceIndexes.push(i);
             }
+        }
 
-            return (score += card.getScore);
-        });
+        return { isAceInHand, aceIndexes };
+    };
 
-        if (score < 11 && isAce) {
-            score += 9;
+    const count = (hand: Card[]) => {
+        let score = 0;
+        for (let i = 0; i < hand.length; i++) {
+            score += hand[i].getScore;
+        }
+        return score;
+    };
+
+    const countScore = useCallback((hand: Card[], isPlayer: boolean) => {
+        let score: number = count(hand);
+
+        const { isAceInHand, aceIndexes } = aceScoreHandler(hand);
+
+        if (isAceInHand && score + 9 < 22) {
+            for (let i = 0; i < aceIndexes.length; i++) {
+                if (score + 10 < 22) {
+                    hand[aceIndexes[i]].setScore = 10;
+                    score = count(hand);
+                }
+            }
+        }
+
+        if (isAceInHand && score > 21) {
+            for (let i = 0; i < aceIndexes.length; i++) {
+                if (score > 21) {
+                    hand[aceIndexes[i]].setScore = 1;
+                    score = count(hand);
+                }
+            }
         }
 
         if (score > 21 && isPlayer) {
