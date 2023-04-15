@@ -3,6 +3,7 @@ import { Card, DeckOfCards } from "./components/cardDeck/cardDeck";
 
 import { Player } from "./components/player/Player";
 import { Dealer } from "./components/dealer/Dealer";
+
 import "./App.css";
 
 function App() {
@@ -86,10 +87,21 @@ function App() {
 
     const countScore = useCallback((hand: Card[], isPlayer: boolean) => {
         let score: number = 0;
+        // let isAce = false;
 
-        hand.map((card) => {
+        hand.map((card, i) => {
+            if (card.getName.toLocaleLowerCase() === "ace") {
+                // isAce = true;
+                console.log("ACE");
+            }
+
             return (score += card.getScore);
         });
+
+        // if (score < 11 && isAce) {
+        //     score += 9;
+        // }
+
         if (score > 21 && isPlayer) {
             setIsPlayerBusted(true);
         }
@@ -174,7 +186,6 @@ function App() {
 
     const standHandler = () => {
         setIsStand(true);
-
         if (
             dealerScore.current < 17 &&
             dealerScore.current < playerScore.current

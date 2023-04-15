@@ -1,0 +1,13 @@
+.container {
+    width: 150px;
+    height: 220px;
+    background-color: white;
+    background-image: URL("../../assets/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 2px solid white;
+    border-radius: 6px;
+    box-shadow: 3px 3px 5px rgba(245, 245, 245, 0.5);
+    transition: 0.3s;
+}

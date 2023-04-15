@@ -1,0 +1,50 @@
+.container {
+    width: 150px;
+    height: 220px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 20px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 5px rgba(245, 245, 245, 0.5);
+    transition: 0.3s;
+}
+
+.top {
+    align-self: flex-start;
+}
+
+.bottom {
+    align-self: flex-end;
+    transform: rotate(180deg);
+}
+.center::after {
+    font-size: 5em;
+}
+
+.card {
+    margin: 3% 3%;
+}
+
+.card::before {
+    font-weight: bold;
+    font-style: italic;
+    content: attr(data-rank);
+}
+.Spades::after {
+    content: "\2660";
+    color: black;
+}
+.Hearts::after {
+    content: "\2665";
+    color: red;
+}
+.Diamonds::after {
+    content: "\2666";
+    color: red;
+}
+.Clubs::after {
+    content: "\2663";
+    color: black;
+}
