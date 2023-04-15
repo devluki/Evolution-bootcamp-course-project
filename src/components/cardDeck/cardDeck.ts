@@ -8,9 +8,11 @@ export enum Suit {
 export class Card {
     readonly rank: number;
     readonly suit: Suit;
+    private score: number;
     constructor(rank: number, suit: Suit) {
         this.rank = rank;
         this.suit = suit;
+        this.score = this.rank < 11 ? this.rank : 10;
     }
 
     private static rankNames = [
@@ -36,14 +38,10 @@ export class Card {
         return Suit[this.suit];
     }
     public get getScore(): number {
-        let score: number;
-
-        if (this.rank < 11) {
-            score = this.rank;
-        } else {
-            score = 10;
-        }
-        return score;
+        return this.score;
+    }
+    public set setScore(val: number) {
+        this.score = val;
     }
 }
 

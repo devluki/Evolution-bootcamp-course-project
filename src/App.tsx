@@ -87,20 +87,20 @@ function App() {
 
     const countScore = useCallback((hand: Card[], isPlayer: boolean) => {
         let score: number = 0;
-        // let isAce = false;
+        let isAce = false;
 
         hand.map((card, i) => {
             if (card.getName.toLocaleLowerCase() === "ace") {
-                // isAce = true;
-                console.log("ACE");
+                isAce = true;
+                card.setScore = 10;
             }
 
             return (score += card.getScore);
         });
 
-        // if (score < 11 && isAce) {
-        //     score += 9;
-        // }
+        if (score < 11 && isAce) {
+            score += 9;
+        }
 
         if (score > 21 && isPlayer) {
             setIsPlayerBusted(true);

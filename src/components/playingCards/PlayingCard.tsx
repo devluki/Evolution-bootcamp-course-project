@@ -20,7 +20,9 @@ const PlayingCard: React.FC<CardProps> = ({ card }) => {
             <div className={styles.container}>
                 <span
                     style={{ color: color }}
-                    data-rank={card.getName[0]}
+                    data-rank={
+                        card.rank === 10 ? card.getName : card.getName[0]
+                    }
                     className={`${styles.card} ${styles[card.getSuit]} ${
                         styles.top
                     }`}
@@ -32,7 +34,9 @@ const PlayingCard: React.FC<CardProps> = ({ card }) => {
                 ></span>
                 <span
                     style={{ color: color }}
-                    data-rank={card.getName[0]}
+                    data-rank={
+                        card.rank === 10 ? card.getName : card.getName[0]
+                    }
                     className={`${styles.card} ${styles[card.getSuit]} ${
                         styles.bottom
                     }`}
