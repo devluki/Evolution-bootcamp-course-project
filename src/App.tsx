@@ -227,6 +227,10 @@ function App() {
         // }
         // console.log(dealerScore, playerScore);
         // winnerCheck();
+
+        // while(dealerScore.current<17|| dealerScore.current < playerScore.current){
+        //     hitHandler(false);
+        // }
     };
 
     useEffect(() => {
