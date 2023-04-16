@@ -219,15 +219,38 @@ function App() {
 
     const standHandler = () => {
         setIsStand(true);
-        if (
-            dealerScore.current < 17 &&
-            dealerScore.current < playerScore.current
-        ) {
-            hitHandler(false);
-        }
-        console.log(dealerScore, playerScore);
-        winnerCheck();
+        // if (
+        //     dealerScore.current < 17 &&
+        //     dealerScore.current < playerScore.current
+        // ) {
+        //     hitHandler(false);
+        // }
+        // console.log(dealerScore, playerScore);
+        // winnerCheck();
     };
+
+    useEffect(() => {
+        const intervalLoop = setInterval(() => {
+            if (
+                isStand &&
+                dealerScore.current < 17 &&
+                dealerScore.current < playerScore.current
+            ) {
+                console.log("Interval running");
+                hitHandler(false);
+            } else {
+                console.log("Clear interval");
+                clearInterval(intervalLoop);
+                if (isStand) {
+                    winnerCheck();
+                }
+            }
+        }, 700);
+
+        return () => {
+            return clearInterval(intervalLoop);
+        };
+    }, [hitHandler, isStand]);
 
     return (
         <div className="App">

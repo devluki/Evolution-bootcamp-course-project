@@ -17,7 +17,7 @@ export const PlayerActions = (props: PlayerActionsProps) => {
         (props.isPlayerWins && props.isStand) ||
         (props.isDealerWins && props.isStand);
 
-    console.log("GameOver", isGameOver, props.isBusted, props.isPlayerWins);
+    // console.log("GameOver", isGameOver, props.isBusted, props.isPlayerWins);
     return (
         <>
             <div>
