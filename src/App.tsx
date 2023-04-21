@@ -8,6 +8,7 @@ import { TokenSelector } from "./components/tokens/TokenSelector";
 import { BettingSpot } from "./components/tokens/BettingSpot";
 import { BalanceIndicator } from "./components/UI/BalanceIndicator";
 import { PlayerActions } from "./components/player/PlayerActions";
+import { Timer } from "./components/timer/Timer";
 
 import "./App.css";
 
@@ -51,6 +52,7 @@ function App() {
             <BettingSpot />
             <div className="actions">
                 <TokenSelector />
+                <Timer />
                 <PlayerActions isGameOver={isGamerOver} />
             </div>
             <BalanceIndicator
