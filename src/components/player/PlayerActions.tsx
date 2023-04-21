@@ -1,41 +1,95 @@
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "../UI/Button";
+
 interface PlayerActionsProps {
-    isBet: boolean;
-    isStand: boolean;
-    isBusted: boolean;
-    isPlayerWins: boolean;
-    isDealerWins: boolean;
-    isDraw: boolean;
-    init: () => void;
-    onStandHandler: () => void;
-    onHitHandler: (isPlayer: boolean) => void;
-    onReset: () => void;
+    isGameOver: boolean;
 }
 
-export const PlayerActions = (props: PlayerActionsProps) => {
-    const isGameOver =
-        props.isBusted ||
-        (props.isPlayerWins && props.isStand) ||
-        (props.isDealerWins && props.isStand);
+export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
+    const dispatch = useDispatch();
+    const {
+        betHistory,
+        isBetFlag,
+        isStandFlag,
+        isDealerBustedFlag,
+        isPlayerBustedFlag,
+        isDealerWinsFlag,
+        isDrawFlag,
+        isPlayerWinsFlag,
+    } = useSelector((state: BlackJackState) => state);
 
-    // console.log("GameOver", isGameOver, props.isBusted, props.isPlayerWins);
+    const init = () => {
+        dispatch({ type: "init", payload: { numberOfDecks: 6 } });
+        dispatch({ type: "setBetFlag" });
+    };
+
+    const hitHandler = () => {
+        dispatch({ type: "hit" });
+    };
+    const stayHandler = () => {
+        dispatch({ type: "setStandFlag" });
+        setTimeout(() => {
+            dispatch({ type: "dealerMustDraw" });
+        }, 1500);
+        setTimeout(() => {
+            dispatch({ type: "checkForWinners" });
+        }, 2000);
+    };
+
+    const resetBetHandler = () => {
+        dispatch({ type: "setCurToken", payload: { tokenValue: 0 } });
+        if (betHistory.length === 0) return;
+        dispatch({ type: "resetBet" });
+    };
+    const undoBetHandler = () => {
+        if (betHistory.length === 0) return;
+        dispatch({ type: "undoBet" });
+    };
+
+    const doubleDownHandler = () => {
+        dispatch({ type: "increaseBet" });
+        setTimeout(() => {
+            dispatch({ type: "hit" });
+            stayHandler();
+        }, 1000);
+        // dispatch({ type: "setStandFlag" });
+    };
+
+    const resetGameHandler = () => {
+        dispatch({ type: "resetGame" });
+    };
+
+    const getState = () => {
+        dispatch({ type: "getState" });
+    };
+
+    const isBusted = isDealerBustedFlag || isPlayerBustedFlag;
+
     return (
         <>
             <div>
-                <p>Player Actions</p>
-                {!props.isBet && !isGameOver && (
-                    <button onClick={props.init}>Set bet $10</button>
-                )}
-                {props.isBet && !isGameOver && (
-                    <button onClick={props.onStandHandler}>Stand</button>
-                )}
-                {props.isBet && !isGameOver && (
-                    <button onClick={() => props.onHitHandler(true)}>
-                        Hit
-                    </button>
-                )}
                 {isGameOver && (
-                    <button onClick={props.onReset}>Play again</button>
+                    <Button onClick={resetGameHandler} innerText="Reset" />
                 )}
+                {!isBetFlag && (
+                    <div>
+                        <button onClick={undoBetHandler}>Undo BET</button>
+                        <button onClick={resetBetHandler}>Reset BET</button>
+                    </div>
+                )}
+                {!isBetFlag && betHistory.length > 0 && (
+                    <button onClick={init}>Deal cards!</button>
+                )}
+                {isBetFlag && !isStandFlag && (
+                    <button onClick={hitHandler}>Hit</button>
+                )}
+                {isBetFlag && !isStandFlag && (
+                    <button onClick={stayHandler}>Stay</button>
+                )}
+                {isBetFlag && !isStandFlag && (
+                    <button onClick={doubleDownHandler}>Double Down??</button>
+                )}
+                <button onClick={getState}>GET CURRENT STATE</button>
             </div>
         </>
     );

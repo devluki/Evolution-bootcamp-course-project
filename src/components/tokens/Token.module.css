@@ -1,0 +1,52 @@
+.token {
+    margin: 0.5em;
+    font-size: 1.5em;
+    font-weight: bold;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    position: relative;
+    border: 0.5em dashed white;
+    transition: all 0.5s ease;
+    backface-visibility: hidden;
+    cursor: pointer;
+    text-shadow: 1px 2px black;
+
+    transform: perspective(3000px) rotateX(55deg) rotateZ(-40deg);
+
+    box-shadow: -10px 10px 4px #1a1a1a;
+}
+
+.token:hover {
+    transform: perspective(3000px) rotateX(55deg) rotateZ(-40deg)
+        translateZ(0.5em);
+}
+
+.token.active {
+    transform: rotateZ(0deg) translateZ(0.5em);
+
+    animation: blink infinite 2s;
+}
+
+.token.inactive {
+    filter: brightness(20%);
+    pointer-events: none;
+}
+
+@keyframes blink {
+    0% {
+        box-shadow: 0px 0px 10px whitesmoke;
+    }
+
+    50% {
+        box-shadow: 0px 0px 5px whitesmoke;
+    }
+
+    100% {
+        box-shadow: 0px 0px 10px whitesmoke;
+    }
+}

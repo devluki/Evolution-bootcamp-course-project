@@ -1,0 +1,4 @@
+.container {
+    display: flex;
+    transition: 1.5s;
+}

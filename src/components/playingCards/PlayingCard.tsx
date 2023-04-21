@@ -1,14 +1,9 @@
-import { Card } from "../cardDeck/cardDeck";
 import styles from "./PlayingCard.module.css";
+import { Card } from "../../utils/utils";
 
 interface CardProps {
     card: Card;
 }
-
-// Spades,
-// Clubs,
-// Hearts,
-// Diamonds,
 
 const PlayingCard: React.FC<CardProps> = ({ card }) => {
     const color =
