@@ -5,7 +5,7 @@ const FlippedCard: React.FC = () => {
         <>
             <div
                 className={styles.container}
-                style={{ top: "35px", left: "5px" }}
+                style={{ top: "5px", left: "35px" }}
             ></div>
         </>
     );
