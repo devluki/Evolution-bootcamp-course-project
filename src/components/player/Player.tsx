@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { PlayerActions } from "./PlayerActions";
+
 import { PlayerHand } from "./PlayerHand";
 
 export const Player = () => {
@@ -8,7 +8,6 @@ export const Player = () => {
     );
     return (
         <>
-            {/* <div style={{ color: "white", marginTop: "10%" }}> */}
             <div style={{ color: "white" }}>
                 {isBetFlag && <p>Your score:{playerScore}</p>}
                 <PlayerHand />

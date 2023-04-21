@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 import { Button } from "../UI/Button";
 
@@ -30,16 +31,8 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
     };
     const stayHandler = () => {
         dispatch({ type: "setStandFlag" });
-        // setTimeout(() => {
         dispatch({ type: "dealerMustDraw" });
-        // }, 1500);
-        // setTimeout(() => {
         dispatch({ type: "checkForWinners" });
-        // }, 2000);
-
-        setTimeout(() => {
-            dispatch({ type: "resetGame" });
-        }, 5000);
     };
 
     const resetBetHandler = () => {
@@ -69,7 +62,28 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
         dispatch({ type: "getState" });
     };
 
-    const isBusted = isDealerBustedFlag || isPlayerBustedFlag;
+    // const isBusted = isDealerBustedFlag || isPlayerBustedFlag;
+
+    useEffect(() => {
+        if (
+            isDealerBustedFlag ||
+            isPlayerBustedFlag ||
+            isDealerWinsFlag ||
+            isDrawFlag ||
+            isPlayerWinsFlag
+        ) {
+            setTimeout(() => {
+                dispatch({ type: "resetGame" });
+            }, 3000);
+        }
+    }, [
+        isDealerBustedFlag,
+        isPlayerBustedFlag,
+        dispatch,
+        isDealerWinsFlag,
+        isDrawFlag,
+        isPlayerWinsFlag,
+    ]);
 
     return (
         <>

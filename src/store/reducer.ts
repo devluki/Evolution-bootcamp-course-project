@@ -140,41 +140,43 @@ export function blackJakReducer(
                 betHistory: [],
             };
         case "checkForWinners":
-            if (state.isStandFlag) {
-                console.log(state.playerScore, state.dealerScore);
-                const isPlayerWin =
-                    !state.isPlayerBustedFlag &&
-                    state.playerScore > state.dealerScore;
+            //  if (state.isStandFlag) {
+            console.log(state.playerScore, state.dealerScore);
+            const isPlayerWin =
+                (!state.isPlayerBustedFlag &&
+                    state.playerScore > state.dealerScore) ||
+                state.isDealerBustedFlag;
 
-                const isDealerWin =
-                    !state.isDealerBustedFlag &&
-                    state.playerScore < state.dealerScore;
-                const isDraw =
-                    state.playerScore === state.dealerScore ? true : false;
+            const isDealerWin =
+                (!state.isDealerBustedFlag &&
+                    state.playerScore < state.dealerScore) ||
+                state.isPlayerBustedFlag;
+            const isDraw =
+                state.playerScore === state.dealerScore ? true : false;
 
-                const is21 = isBlackJack(state.playerHand);
+            const is21 = isBlackJack(state.playerHand);
 
-                let price: number = 0;
-                if (isPlayerWin && is21) {
-                    price = (state.currentBet * 3) / 2 + state.currentBet;
-                }
-                if (isPlayerWin && !is21) {
-                    price = state.currentBet * 2;
-                }
-                if (isDraw) {
-                    price = state.currentBet;
-                }
-
-                // const price
-                return {
-                    ...state,
-                    isPlayerWinsFlag: isPlayerWin,
-                    isDealerWinsFlag: isDealerWin,
-                    isDrawFlag: isDraw,
-                    balance: state.balance + price,
-                };
+            let price: number = 0;
+            if (isPlayerWin && is21) {
+                price = (state.currentBet * 3) / 2 + state.currentBet;
             }
-            return state;
+            if (isPlayerWin && !is21) {
+                price = state.currentBet * 2;
+            }
+            if (isDraw) {
+                price = state.currentBet;
+            }
+
+            // const price
+            return {
+                ...state,
+                isPlayerWinsFlag: isPlayerWin,
+                isDealerWinsFlag: isDealerWin,
+                isDrawFlag: isDraw,
+                balance: state.balance + price,
+            };
+        // }
+        // return state;
         case "resetGame":
             const newBalance = state.balance;
             return { ...initialState, balance: newBalance };

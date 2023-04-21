@@ -2,6 +2,7 @@
     position: absolute;
     width: 150px;
     height: 220px;
+    max-height: 25vh;
     background-color: white;
     background-image: URL("../../assets/logo.png");
     background-repeat: no-repeat;
@@ -24,4 +25,22 @@
     background-size: 10px 10px;
     background-repeat: repeat;
     /*  */
+    animation-duration: 1.5s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 200%;
+        margin-bottom: 70%;
+        transform: rotate(160deg);
+        /* width: 300%; */
+    }
+
+    to {
+        margin-left: 0%;
+        margin-bottom: 0%;
+        transform: rotate(0deg);
+        /* width: 100%; */
+    }
 }
