@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 
 import { Clock } from "./Clock";
 
+import styles from "./Timer.module.css";
+
 export const Timer = () => {
     const [counter, setCounter] = useState<number>(0);
 
@@ -19,8 +21,6 @@ export const Timer = () => {
         const minutes: number = Math.floor((counter % 3600) / 60);
         const hours: number = Math.floor(counter / 3600);
 
-        console.log(hours, minutes, seconds);
-
         return [seconds, minutes, hours];
     };
 
@@ -28,8 +28,8 @@ export const Timer = () => {
 
     return (
         <>
-            <div className="container">
-                <p className="headding">Gameplay duration</p>
+            <div className={styles.container}>
+                <p className={styles.heading}>Gameplay duration</p>
                 <Clock seconds={seconds} hours={hours} minutes={minutes} />
             </div>
         </>

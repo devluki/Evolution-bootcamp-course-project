@@ -6,9 +6,8 @@ import { Dealer } from "./components/dealer/Dealer";
 import { Message } from "./components/UI/Message";
 import { TokenSelector } from "./components/tokens/TokenSelector";
 import { BettingSpot } from "./components/tokens/BettingSpot";
-import { BalanceIndicator } from "./components/UI/BalanceIndicator";
+import { BalanceIndicator } from "./components/UI/BalanceTimerIndicator";
 import { PlayerActions } from "./components/player/PlayerActions";
-import { Timer } from "./components/timer/Timer";
 
 import "./App.css";
 
@@ -46,13 +45,12 @@ function App() {
             {/* {isGamerOver && <Message messageText="Game over" />} */}
             {isDealerWinsFlag && <Message messageText="Dealer win!" />}
             {isPlayerWinsFlag && <Message messageText="Player win!" />}
-
             <Player />
-
             <BettingSpot />
+
             <div className="actions">
                 <TokenSelector />
-                <Timer />
+
                 <PlayerActions isGameOver={isGamerOver} />
             </div>
             <BalanceIndicator

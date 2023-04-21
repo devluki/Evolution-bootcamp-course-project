@@ -53,3 +53,9 @@ interface ButtonProps {
     onClick: () => void;
     innerText: string;
 }
+
+interface ClockProps {
+    hours: number;
+    minutes: number;
+    seconds: number;
+}

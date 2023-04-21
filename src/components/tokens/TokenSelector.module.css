@@ -1,4 +1,6 @@
 .container {
     display: flex;
     transition: 1.5s;
+    flex-wrap: wrap;
+    width: 50%;
 }

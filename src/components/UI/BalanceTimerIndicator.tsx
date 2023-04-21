@@ -1,5 +1,5 @@
 import styles from "./BalanaceIndicator.module.css";
-
+import { Timer } from "../timer/Timer";
 export const BalanceIndicator: React.FC<BalanceIndicatorProps> = ({
     currentBalance,
     currentBetValue,
@@ -11,6 +11,7 @@ export const BalanceIndicator: React.FC<BalanceIndicatorProps> = ({
                     <span>Balance: </span>
                     <span>$</span> {currentBalance}
                 </div>
+                <Timer />
                 <div className={styles.curBet}>
                     <span>Bet value: </span>
                     <span>$</span> {currentBetValue}

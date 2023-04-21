@@ -1,6 +1,9 @@
 .container {
+    left: 0;
+    top: 0;
     width: 150px;
     height: 220px;
+
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -10,6 +13,8 @@
     border: solid 1px black;
     box-shadow: 3px 3px 5px rgba(245, 245, 245, 0.5);
     transition: 1.3s;
+    position: absolute;
+
     /* animation-duration: 3s;
     animation-name: slidein; */
 }

@@ -8,9 +8,10 @@ export const Player = () => {
     );
     return (
         <>
-            <div style={{ color: "white", marginTop: "10%" }}>
-                <PlayerHand />
+            {/* <div style={{ color: "white", marginTop: "10%" }}> */}
+            <div style={{ color: "white" }}>
                 {isBetFlag && <p>Your score:{playerScore}</p>}
+                <PlayerHand />
             </div>
         </>
     );

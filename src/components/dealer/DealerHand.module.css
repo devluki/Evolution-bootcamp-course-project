@@ -1,0 +1,6 @@
+.container {
+    position: relative;
+    max-height: 30vh;
+    min-height: 220px;
+    /* background-color: #fff; */
+}

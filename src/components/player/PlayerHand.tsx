@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-
+import styles from "./PlayerHand.module.css";
 import PlayingCard from "../playingCards/PlayingCard";
 
 export const PlayerHand = () => {
@@ -8,15 +8,16 @@ export const PlayerHand = () => {
     return (
         <>
             <div
-                style={{
-                    display: "flex",
-                    justifyContent: "space-around",
-                    maxWidth: "70vw",
-                    margin: "0 auto",
-                }}
+                className={styles.container}
+                // style={{
+                //     display: "flex",
+                //     justifyContent: "space-around",
+                //     maxWidth: "70vw",
+                //     margin: "0 auto",
+                // }}
             >
                 {playerHand.map((card, i) => (
-                    <PlayingCard key={i} card={card} />
+                    <PlayingCard key={i} card={card} positionOffset={i} />
                 ))}
             </div>
         </>

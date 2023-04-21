@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+
 import { Button } from "../UI/Button";
 
 interface PlayerActionsProps {
@@ -13,6 +14,7 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
         isStandFlag,
         isDealerBustedFlag,
         isPlayerBustedFlag,
+        currentBet,
         isDealerWinsFlag,
         isDrawFlag,
         isPlayerWinsFlag,
@@ -28,12 +30,16 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
     };
     const stayHandler = () => {
         dispatch({ type: "setStandFlag" });
+        // setTimeout(() => {
+        dispatch({ type: "dealerMustDraw" });
+        // }, 1500);
+        // setTimeout(() => {
+        dispatch({ type: "checkForWinners" });
+        // }, 2000);
+
         setTimeout(() => {
-            dispatch({ type: "dealerMustDraw" });
-        }, 1500);
-        setTimeout(() => {
-            dispatch({ type: "checkForWinners" });
-        }, 2000);
+            dispatch({ type: "resetGame" });
+        }, 5000);
     };
 
     const resetBetHandler = () => {
@@ -73,8 +79,18 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
                 )}
                 {!isBetFlag && (
                     <div>
-                        <button onClick={undoBetHandler}>Undo BET</button>
-                        <button onClick={resetBetHandler}>Reset BET</button>
+                        <button
+                            onClick={undoBetHandler}
+                            disabled={currentBet === 0}
+                        >
+                            Undo BET
+                        </button>
+                        <button
+                            onClick={resetBetHandler}
+                            disabled={currentBet === 0}
+                        >
+                            Reset BET
+                        </button>
                     </div>
                 )}
                 {!isBetFlag && betHistory.length > 0 && (

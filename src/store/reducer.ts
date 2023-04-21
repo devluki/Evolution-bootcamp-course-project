@@ -156,7 +156,7 @@ export function blackJakReducer(
 
                 let price: number = 0;
                 if (isPlayerWin && is21) {
-                    price = (state.currentBet * 3) / 2;
+                    price = (state.currentBet * 3) / 2 + state.currentBet;
                 }
                 if (isPlayerWin && !is21) {
                     price = state.currentBet * 2;

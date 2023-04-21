@@ -1,18 +1,24 @@
 import styles from "./PlayingCard.module.css";
-import { Card } from "../../utils/utils";
+import { Card } from "../../models/cards";
 
 interface CardProps {
     card: Card;
+    positionOffset: number;
 }
 
-const PlayingCard: React.FC<CardProps> = ({ card }) => {
+const PlayingCard: React.FC<CardProps> = ({ card, positionOffset }) => {
     const color =
         card.getSuit === "Hearts" || card.getSuit === "Diamonds"
             ? "red"
             : "black";
+
+    const offset = {
+        top: `${positionOffset * 5}px`,
+        left: `${positionOffset * 35}px`,
+    };
     return (
         <>
-            <div className={styles.container}>
+            <div className={styles.container} style={offset}>
                 <span
                     style={{ color: color }}
                     data-rank={

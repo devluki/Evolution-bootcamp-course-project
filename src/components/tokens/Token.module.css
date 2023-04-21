@@ -6,11 +6,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90px;
-    height: 90px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     position: relative;
-    border: 0.5em dashed white;
+    border: 0.3em dashed white;
     transition: all 0.5s ease;
     backface-visibility: hidden;
     cursor: pointer;
@@ -48,5 +48,17 @@
 
     100% {
         box-shadow: 0px 0px 10px whitesmoke;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .token {
+        margin: 0.5em;
+
+        font-size: 1.5em;
+
+        width: 90px;
+        height: 90px;
+        border: 0.5em dashed white;
     }
 }

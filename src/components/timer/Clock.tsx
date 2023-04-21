@@ -1,8 +1,4 @@
-interface ClockProps {
-    hours: number;
-    minutes: number;
-    seconds: number;
-}
+import styles from "./Clock.module.css";
 
 export const Clock: React.FC<ClockProps> = ({ hours, minutes, seconds }) => {
     const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
@@ -11,9 +7,9 @@ export const Clock: React.FC<ClockProps> = ({ hours, minutes, seconds }) => {
 
     return (
         <>
-            <span>{displayHours}:</span>
-            <span>{displayMinutes}:</span>
-            <span>{displaySeconds}</span>
+            <span className={styles.txt}>{displayHours}:</span>
+            <span className={styles.txt}>{displayMinutes}:</span>
+            <span className={styles.txt}>{displaySeconds}</span>
         </>
     );
 };
