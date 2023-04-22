@@ -18,7 +18,7 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
     const {
         dealerHand,
         isStandFlag,
-        // isBetFlag,
+        isBetFlag,
         // isDealerBustedFlag,
         // isDealerWinsFlag,
         // isPlayerWinsFlag,
@@ -39,19 +39,21 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
     };
 
     useEffect(() => {
-        for (let i = curHand.length; i < dealerHand.length; i++) {
+        // if (!isStandFlag) return;
+        let noOfIterations = isStandFlag ? dealerHand.length : 1;
+        console.log("Cur hand length:", curHand.length);
+        for (let i = curHand.length; i < noOfIterations; i++) {
             if (curHand.length === dealerHand.length) return;
-            let k = i > 1 ? i - 1 : i;
-
-            dealayOutput(curHandHandler, i, 100 + k * DELAY_TIME);
-            // setTimeout(() => {
-            //     setCurHand((prev) => [...prev, dealerHand[i]]);
-            // }, 100 + k * 1000);
+            let k = i > 2 ? i - 1 : i;
+            console.log("Iterations:", i, k);
+            dealayOutput(curHandHandler, i, 1000 + k * DELAY_TIME);
         }
     }, [dealerHand]);
 
     useEffect(() => {
         dealayOutput(curScoreHandler, curHand, DELAY_TIME);
+
+        console.log(curHand);
     }, [curHand]);
 
     useEffect(() => {
@@ -73,6 +75,7 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
                         <PlaingCard key={i} card={card} positionOffset={i} />
                     );
                 })}
+                {isBetFlag && !isStandFlag && <FlippedCard />}
                 {/* {dealerHand.map((card, i) => {
                     if (!isStand) {
                         if (i === 1) {

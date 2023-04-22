@@ -21,6 +21,22 @@
     box-shadow: -10px 10px 4px #1a1a1a;
 }
 
+.token::after {
+    box-sizing: border-box;
+    z-index: 3;
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%;
+    height: 140%;
+
+    border-radius: 50%;
+    border: 0.3px solid #484747;
+}
+
 .token:hover {
     transform: perspective(3000px) rotateX(55deg) rotateZ(-40deg)
         translateZ(0.5em);

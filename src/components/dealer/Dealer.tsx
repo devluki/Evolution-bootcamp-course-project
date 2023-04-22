@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card } from "../../models/cards";
 import { DealerHand } from "./DealerHand";
 import { countHandScore } from "../../utils/utils";
@@ -11,7 +11,7 @@ export const Dealer = () => {
 
     const curScoreHandler = (hand: Card[]) => {
         const curScore = countHandScore(hand);
-        console.log(curScore);
+
         setCurScore(curScore);
     };
     const { isStandFlag, dealerHand, isBetFlag } = useSelector(
@@ -32,7 +32,9 @@ export const Dealer = () => {
                 )}
                 {<DealerHand curScoreHandler={curScoreHandler} />}
                 <ScoreIndicator
-                    score={curScore}
+                    score={
+                        (!isStandFlag && dealerHand[0]?.getScore) || curScore
+                    }
                     isBetFlag={isBetFlag}
                     isPlayer={false}
                 />

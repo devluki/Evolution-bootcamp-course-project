@@ -6,8 +6,7 @@
     border-radius: 10px;
 
     transform: perspective(3000px) translate(-50%, -50%);
-
-    width: 40%;
+    padding: 0.3em 0.5em;
 
     background: rgb(191, 164, 84);
     box-shadow: inset 2px 4px 5px 0px #fffefcce, inset 0px 0px 5px 2px #1b1b1aa2,
