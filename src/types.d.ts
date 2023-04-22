@@ -68,6 +68,10 @@ interface ScoreIndicatorProps {
     isBetFlag: boolean;
 }
 
+interface BetIndicatorProps {
+    bet: number;
+}
+
 type DelayFunction = (
     params: number | string | Card | Card[] | null = null,
 ) => void;

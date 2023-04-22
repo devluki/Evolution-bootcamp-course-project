@@ -1,0 +1,30 @@
+.container {
+    position: absolute;
+    z-index: 3;
+    top: 70%;
+    left: 10%;
+    border-radius: 10px;
+
+    transform: perspective(3000px) translate(-50%, -50%);
+
+    width: 40%;
+
+    background: rgb(191, 164, 84);
+    box-shadow: inset 2px 4px 5px 0px #fffefcce, inset 0px 0px 5px 2px #1b1b1aa2,
+        0px 10px 4px #1a1a1a;
+    background: linear-gradient(90deg, #e5d786 0%, #cc992e 35%);
+    transition: 0.5s;
+}
+
+.txt {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #feffbf;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.705);
+}
+
+.container:hover {
+    scale: 1.5;
+    box-shadow: inset 3px 5px 10px 3px #fffefcce,
+        inset 0px 0px 6px 3px #1b1b1aa2, 0px 8px 10px #1a1a1a;
+}

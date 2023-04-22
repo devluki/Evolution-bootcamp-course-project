@@ -28,6 +28,7 @@ export const Player = () => {
                     isBetFlag={isBetFlag}
                     isPlayer={true}
                 />
+
                 <PlayerHand curScoreHandler={curScoreHandler} />
             </div>
         </>
