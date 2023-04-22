@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 import { Button } from "../UI/Button";
 
@@ -13,12 +13,12 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
         betHistory,
         isBetFlag,
         isStandFlag,
-        isDealerBustedFlag,
-        isPlayerBustedFlag,
+        // isDealerBustedFlag,
+        // isPlayerBustedFlag,
         currentBet,
-        isDealerWinsFlag,
-        isDrawFlag,
-        isPlayerWinsFlag,
+        // isDealerWinsFlag,
+        // isDrawFlag,
+        // isPlayerWinsFlag,
     } = useSelector((state: BlackJackState) => state);
 
     const init = () => {

@@ -22,6 +22,7 @@ function App() {
         isDrawFlag,
         balance,
         currentBet,
+        isDealerHandCopmlete,
     } = useSelector((state: BlackJackState) => state);
 
     // Render current communicate ?? TimeOutFn??
@@ -35,16 +36,24 @@ function App() {
 
     return (
         <div className="App">
-            <Dealer isBet={isBetFlag} isStand={isStandFlag} />
+            <Dealer />
 
             {!isBetFlag && <Message messageText="Please, place your bet!" />}
             {isPlayerBustedFlag && <Message messageText="Player busted!" />}
-            {isDealerBustedFlag && <Message messageText="Dealer busted!" />}
-            {isDrawFlag && <Message messageText="Draw" />}
+            {isDealerHandCopmlete && isDealerBustedFlag && (
+                <Message messageText="Dealer busted!" />
+            )}
+            {isDealerHandCopmlete && isDrawFlag && (
+                <Message messageText="Draw" />
+            )}
 
             {/* {isGamerOver && <Message messageText="Game over" />} */}
-            {isDealerWinsFlag && <Message messageText="Dealer win!" />}
-            {isPlayerWinsFlag && <Message messageText="Player win!" />}
+            {isDealerHandCopmlete && isDealerWinsFlag && (
+                <Message messageText="Dealer win!" />
+            )}
+            {isDealerHandCopmlete && isPlayerWinsFlag && (
+                <Message messageText="Player win!" />
+            )}
             <Player />
             <BettingSpot />
 

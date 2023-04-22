@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import PlaingCard from "../playingCards/PlayingCard";
 import FlippedCard from "../playingCards/FlippedCard";
@@ -16,13 +16,15 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
     const {
         dealerHand,
         isStandFlag,
-        isBetFlag,
-        isDealerBustedFlag,
-        isDealerWinsFlag,
-        isPlayerWinsFlag,
-        isPlayerBustedFlag,
-        isDrawFlag,
+        // isBetFlag,
+        // isDealerBustedFlag,
+        // isDealerWinsFlag,
+        // isPlayerWinsFlag,
+        // isPlayerBustedFlag,
+        // isDrawFlag,
     } = useSelector((state: BlackJackState) => state);
+
+    const dispatch = useDispatch();
 
     const [curHand, setCurHand] = useState<Card[]>([]);
 
@@ -37,31 +39,26 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
         }
     }, [dealerHand]);
 
-    // useEffect(() => {
-    //     if (
-    //         isDealerBustedFlag ||
-    //         isDealerWinsFlag ||
-    //         isPlayerWinsFlag ||
-    //         isPlayerBustedFlag ||
-    //         isDrawFlag
-    //     ) {
-    //         setTimeout(() => {
-    //             setCurHand([]);
-    //         }, 3000);
-    //     }
-    // }, [
-    //     isDealerBustedFlag,
-    //     isDealerWinsFlag,
-    //     isPlayerWinsFlag,
-    //     isPlayerBustedFlag,
-    //     isDrawFlag,
-    // ]);
-
     useEffect(() => {
         setTimeout(() => {
             curScoreHandler(curHand);
         }, 1000);
     }, [curHand]);
+
+    useEffect(() => {
+        if (isStandFlag && curHand.length === dealerHand.length) {
+            setTimeout(() => {
+                dispatch({ type: "setDealerHandCopleteFlag" });
+            }, 2000);
+        }
+        console.log(
+            "equality check",
+            curHand.length,
+            dealerHand.length,
+            curHand,
+            dealerHand,
+        );
+    }, [curHand, isStandFlag]);
 
     return (
         <>

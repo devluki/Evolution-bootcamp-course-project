@@ -1,16 +1,10 @@
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "../../models/cards";
 import { DealerHand } from "./DealerHand";
 import { countHandScore } from "../../utils/utils";
 
-interface DealerProps {
-    isBet: boolean;
-    isStand: boolean;
-}
-
-export const Dealer = (props: DealerProps) => {
-    const { isBet, isStand } = props;
+export const Dealer = () => {
     const [curScore, setCurScore] = useState<number>(0);
 
     const curScoreHandler = (hand: Card[]) => {
@@ -18,9 +12,11 @@ export const Dealer = (props: DealerProps) => {
         console.log(curScore);
         setCurScore(curScore);
     };
-    const { isStandFlag, dealerScore, dealerHand, isBetFlag } = useSelector(
+    const { isStandFlag, dealerHand, isBetFlag } = useSelector(
         (state: BlackJackState) => state,
     );
+
+    // useEffect(()=>{},[])// -> When cur Score === dealer Score ???
 
     return (
         <>

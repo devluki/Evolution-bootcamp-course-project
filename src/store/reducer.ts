@@ -15,6 +15,7 @@ const initialState: BlackJackState = {
     isDoubleDownFlag: false,
     isPlayerWinsFlag: false,
     isDealerWinsFlag: false,
+    isDealerHandCopmlete: false,
     isDrawFlag: false,
     playerScore: 0,
     dealerScore: 0,
@@ -183,6 +184,8 @@ export function blackJakReducer(
         case "getState":
             console.log("FINAL STATE:", state);
             return state;
+        case "setDealerHandCopleteFlag":
+            return { ...state, isDealerHandCopmlete: true };
     }
     return state;
 }

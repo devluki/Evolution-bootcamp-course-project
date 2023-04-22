@@ -7,6 +7,7 @@ interface BlackJackState {
     isPlayerWinsFlag: boolean;
     isDealerWinsFlag: boolean;
     isDrawFlag: boolean;
+    isDealerHandCopmlete: boolean;
     currentBet: number;
     balance: number;
     playerScore: number;
@@ -31,7 +32,8 @@ type BlackJackAction =
     | { type: "undoBet" }
     | { type: "resetGame" }
     | { type: "checkForWinners" }
-    | { type: "getState" };
+    | { type: "getState" }
+    | { type: "setDealerHandCopleteFlag" };
 
 enum Suit {
     Spades,
