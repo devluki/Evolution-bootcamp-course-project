@@ -64,26 +64,26 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
 
     // const isBusted = isDealerBustedFlag || isPlayerBustedFlag;
 
-    useEffect(() => {
-        if (
-            isDealerBustedFlag ||
-            isPlayerBustedFlag ||
-            isDealerWinsFlag ||
-            isDrawFlag ||
-            isPlayerWinsFlag
-        ) {
-            setTimeout(() => {
-                dispatch({ type: "resetGame" });
-            }, 3000);
-        }
-    }, [
-        isDealerBustedFlag,
-        isPlayerBustedFlag,
-        dispatch,
-        isDealerWinsFlag,
-        isDrawFlag,
-        isPlayerWinsFlag,
-    ]);
+    // useEffect(() => {
+    //     if (
+    //         isDealerBustedFlag ||
+    //         isPlayerBustedFlag ||
+    //         isDealerWinsFlag ||
+    //         isDrawFlag ||
+    //         isPlayerWinsFlag
+    //     ) {
+    //         setTimeout(() => {
+    //             dispatch({ type: "resetGame" });
+    //         }, 3000);
+    //     }
+    // }, [
+    //     isDealerBustedFlag,
+    //     isPlayerBustedFlag,
+    //     dispatch,
+    //     isDealerWinsFlag,
+    //     isDrawFlag,
+    //     isPlayerWinsFlag,
+    // ]);
 
     return (
         <>

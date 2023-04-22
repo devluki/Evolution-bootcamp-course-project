@@ -4,7 +4,11 @@ import { Card } from "../../models/cards";
 import styles from "./PlayerHand.module.css";
 import PlayingCard from "../playingCards/PlayingCard";
 
-export const PlayerHand = () => {
+interface PlayerHandProps {
+    curScoreHandler: (hand: Card[]) => void;
+}
+
+export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
     const {
         playerHand,
         isBetFlag,
@@ -16,6 +20,8 @@ export const PlayerHand = () => {
     } = useSelector((state: BlackJackState) => state);
 
     const [curHand, setCurHand] = useState<Card[]>([]);
+
+    // Rewrite for one card dealt, reset additional step for a
 
     useEffect(() => {
         for (let i = curHand.length; i < playerHand.length; i++) {
@@ -29,24 +35,10 @@ export const PlayerHand = () => {
     }, [playerHand]);
 
     useEffect(() => {
-        if (
-            isDealerBustedFlag ||
-            isDealerWinsFlag ||
-            isPlayerWinsFlag ||
-            isPlayerBustedFlag ||
-            isDrawFlag
-        ) {
-            setTimeout(() => {
-                setCurHand([]);
-            }, 3000);
-        }
-    }, [
-        isDealerBustedFlag,
-        isDealerWinsFlag,
-        isPlayerWinsFlag,
-        isPlayerBustedFlag,
-        isDrawFlag,
-    ]);
+        setTimeout(() => {
+            curScoreHandler(curHand);
+        }, 1000);
+    }, [curHand]);
 
     return (
         <>
