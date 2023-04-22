@@ -141,6 +141,19 @@ export const isBlackJack = (hand: Card[]) => {
     return isFirstCardAceOrJack && isSecondCardAceOrJack;
 };
 
+// Delay higher order function
+
+export const dealayOutput = (
+    fn: DelayFunction,
+
+    params: number | string | Card | Card[] | null = null,
+    delay: number,
+) => {
+    return setTimeout(() => {
+        fn(params);
+    }, delay);
+};
+
 export const TOKEN_DATA = [
     { value: 5, color: "#317DDD", textColor: "white" }, //"#0c1e33" },
     { value: 10, color: "#DD4631", textColor: "white" }, //"#32110d" },

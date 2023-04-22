@@ -61,3 +61,7 @@ interface ClockProps {
     minutes: number;
     seconds: number;
 }
+
+type DelayFunction = (
+    params: number | string | Card | Card[] | null = null,
+) => void;

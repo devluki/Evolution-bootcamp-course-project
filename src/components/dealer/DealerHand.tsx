@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import PlaingCard from "../playingCards/PlayingCard";
 import FlippedCard from "../playingCards/FlippedCard";
 import { Card } from "../../models/cards";
+import { dealayOutput } from "../../utils/utils";
+import { DELAY_TIME } from "../../models/consts";
 
 import styles from "./DealerHand.module.css";
 
@@ -28,6 +30,10 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
 
     const [curHand, setCurHand] = useState<Card[]>([]);
 
+    const dispatchHandler = () => {
+        dispatch({ type: "setDealerHandCopleteFlag" });
+    };
+
     useEffect(() => {
         for (let i = curHand.length; i < dealerHand.length; i++) {
             if (curHand.length === dealerHand.length) return;
@@ -40,24 +46,13 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
     }, [dealerHand]);
 
     useEffect(() => {
-        setTimeout(() => {
-            curScoreHandler(curHand);
-        }, 1000);
+        dealayOutput(curScoreHandler, curHand, DELAY_TIME);
     }, [curHand]);
 
     useEffect(() => {
         if (isStandFlag && curHand.length === dealerHand.length) {
-            setTimeout(() => {
-                dispatch({ type: "setDealerHandCopleteFlag" });
-            }, 2000);
+            dealayOutput(dispatchHandler, null, DELAY_TIME * 2);
         }
-        console.log(
-            "equality check",
-            curHand.length,
-            dealerHand.length,
-            curHand,
-            dealerHand,
-        );
     }, [curHand, isStandFlag]);
 
     return (

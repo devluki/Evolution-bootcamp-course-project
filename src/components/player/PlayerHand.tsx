@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Card } from "../../models/cards";
 import styles from "./PlayerHand.module.css";
 import PlayingCard from "../playingCards/PlayingCard";
+import { dealayOutput } from "../../utils/utils";
+import { DELAY_TIME } from "../../models/consts";
 
 interface PlayerHandProps {
     curScoreHandler: (hand: Card[]) => void;
@@ -35,9 +37,7 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
     }, [playerHand]);
 
     useEffect(() => {
-        setTimeout(() => {
-            curScoreHandler(curHand);
-        }, 1000);
+        dealayOutput(curScoreHandler, curHand, DELAY_TIME);
     }, [curHand]);
 
     return (
