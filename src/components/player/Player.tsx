@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Card } from "../../models/cards";
-
+import { ScoreIndicator } from "../UI/ScoreIndicator";
 import { countHandScore } from "../../utils/utils";
-// import { Card } from "../../models/cards";
-
 import { PlayerHand } from "./PlayerHand";
+
+import styles from "./Player.module.css";
 
 export const Player = () => {
     const { isBetFlag } = useSelector((state: BlackJackState) => state);
@@ -20,9 +20,14 @@ export const Player = () => {
 
     return (
         <>
-            <div style={{ color: "white" }}>
+            <div className={styles.container}>
                 {/* {isBetFlag && <p>Your score:{playerScore}</p>} */}
                 {isBetFlag && <p>Your score:{curScore}</p>}
+                <ScoreIndicator
+                    score={curScore}
+                    isBetFlag={isBetFlag}
+                    isPlayer={true}
+                />
                 <PlayerHand curScoreHandler={curScoreHandler} />
             </div>
         </>

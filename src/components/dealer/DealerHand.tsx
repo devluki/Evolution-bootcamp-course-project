@@ -34,14 +34,19 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
         dispatch({ type: "setDealerHandCopleteFlag" });
     };
 
+    const curHandHandler = (i: number) => {
+        setCurHand((prev) => [...prev, dealerHand[i]]);
+    };
+
     useEffect(() => {
         for (let i = curHand.length; i < dealerHand.length; i++) {
             if (curHand.length === dealerHand.length) return;
             let k = i > 1 ? i - 1 : i;
-            // console.log(isBetFlag, k, i);
-            setTimeout(() => {
-                setCurHand((prev) => [...prev, dealerHand[i]]);
-            }, 100 + k * 1000);
+
+            dealayOutput(curHandHandler, i, 100 + k * DELAY_TIME);
+            // setTimeout(() => {
+            //     setCurHand((prev) => [...prev, dealerHand[i]]);
+            // }, 100 + k * 1000);
         }
     }, [dealerHand]);
 

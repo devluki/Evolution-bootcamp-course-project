@@ -62,6 +62,12 @@ interface ClockProps {
     seconds: number;
 }
 
+interface ScoreIndicatorProps {
+    score: number;
+    isPlayer: boolean;
+    isBetFlag: boolean;
+}
+
 type DelayFunction = (
     params: number | string | Card | Card[] | null = null,
 ) => void;

@@ -11,15 +11,9 @@ interface PlayerHandProps {
 }
 
 export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
-    const {
-        playerHand,
-        isBetFlag,
-        isDealerBustedFlag,
-        isDealerWinsFlag,
-        isPlayerWinsFlag,
-        isPlayerBustedFlag,
-        isDrawFlag,
-    } = useSelector((state: BlackJackState) => state);
+    const { playerHand, isBetFlag } = useSelector(
+        (state: BlackJackState) => state,
+    );
 
     const [curHand, setCurHand] = useState<Card[]>([]);
 

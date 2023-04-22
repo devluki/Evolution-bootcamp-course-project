@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Card } from "../../models/cards";
 import { DealerHand } from "./DealerHand";
 import { countHandScore } from "../../utils/utils";
+import styles from "./Dealer.module.css";
+import { ScoreIndicator } from "../UI/ScoreIndicator";
 
 export const Dealer = () => {
     const [curScore, setCurScore] = useState<number>(0);
@@ -20,7 +22,7 @@ export const Dealer = () => {
 
     return (
         <>
-            <div style={{ color: "white" }}>
+            <div className={styles.container}>
                 {isBetFlag && (
                     <p>
                         Dealer score:
@@ -29,6 +31,11 @@ export const Dealer = () => {
                     </p>
                 )}
                 {<DealerHand curScoreHandler={curScoreHandler} />}
+                <ScoreIndicator
+                    score={curScore}
+                    isBetFlag={isBetFlag}
+                    isPlayer={false}
+                />
                 {/* {<DealerHand isStand={isStandFlag} dealerScore={dealerScore} />} */}
             </div>
         </>
