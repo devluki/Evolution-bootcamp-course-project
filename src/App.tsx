@@ -32,6 +32,7 @@ function App() {
         balance,
         currentBet,
         isDealerHandCopmlete,
+        betHistory,
     } = useSelector((state: BlackJackState) => state);
 
     const isGamerOver =
@@ -55,7 +56,12 @@ function App() {
         <div className="App">
             <Dealer />
 
-            {!isBetFlag && <Message messageText="Please, place your bet!" />}
+            {!isBetFlag && balance > 5 && (
+                <Message messageText="Place the bet to start!" />
+            )}
+            {!isBetFlag && balance < 5 && betHistory.length === 0 && (
+                <Message messageText="Please buy tokens to continue!" />
+            )}
             {isBusted && <Message messageText="Player busted!" />}
             {isDealerHandCopmlete && isDealerBustedFlag && (
                 <Message messageText="Dealer busted!" />

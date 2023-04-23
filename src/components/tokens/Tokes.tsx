@@ -23,7 +23,7 @@ export const Token: React.FC<TokenProps> = ({
         setIsActive((prev) => !prev);
     };
     const dispatch = useDispatch();
-    const { selectedTokenVal, balance } = useSelector(
+    const { selectedTokenVal, balance, isBetFlag } = useSelector(
         (state: BlackJackState) => state,
     );
 

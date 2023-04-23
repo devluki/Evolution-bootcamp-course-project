@@ -103,18 +103,22 @@
 .Spades::after {
     content: "\2660";
     color: black;
+    text-shadow: -0px 0px 1px black;
 }
 .Hearts::after {
     content: "\2665";
     color: red;
+    text-shadow: -0px 0px 1px red;
 }
 .Diamonds::after {
     content: "\2666";
     color: red;
+    text-shadow: -0px 0px 1px red;
 }
 .Clubs::after {
     content: "\2663";
     color: black;
+    text-shadow: -0px 0px 1px black;
 }
 
 .flip {

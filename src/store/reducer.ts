@@ -10,6 +10,7 @@ import {
 } from "../utils/utils";
 
 const initialState: BlackJackState = {
+    isGameOver: false,
     isBetFlag: false,
     isStandFlag: false,
     isDoubleDownFlag: false,
@@ -17,6 +18,8 @@ const initialState: BlackJackState = {
     isDealerWinsFlag: false,
     isDealerHandCopmlete: false,
     isDrawFlag: false,
+    isPlayerHaveBlackJack: false,
+    isDealerHaveBlackJack: false,
     playerScore: 0,
     dealerScore: 0,
     balance: 100,
@@ -43,6 +46,8 @@ export function blackJakReducer(
             const { playerHand, dealerHand } = setHands(newShoe);
             const playerScore = countHandScore(playerHand);
             const dealerScore = countHandScore(dealerHand);
+            const playersBlackJack = isBlackJack(playerHand);
+            const dealersBlackJack = isBlackJack(dealerHand);
             return {
                 ...state,
                 shoe: newShoe,
@@ -50,6 +55,8 @@ export function blackJakReducer(
                 dealerHand,
                 playerScore,
                 dealerScore,
+                isPlayerHaveBlackJack: playersBlackJack,
+                isDealerHaveBlackJack: dealersBlackJack,
             };
 
         case "setBetFlag":
@@ -74,6 +81,7 @@ export function blackJakReducer(
             console.log(hand, state);
             const playerScoreUpdated = countHandScore([...hand]);
             const isPlayerBusted = isBusted(playerScoreUpdated);
+            const isGameOver = isPlayerBusted;
 
             return {
                 ...state,
@@ -81,6 +89,7 @@ export function blackJakReducer(
                 playerHand: hand,
                 playerScore: playerScoreUpdated,
                 isPlayerBustedFlag: isPlayerBusted,
+                isGameOver,
                 // isDealerWinsFlag: true,
             };
         case "dealerMustDraw": //Change name
@@ -95,6 +104,7 @@ export function blackJakReducer(
             ]);
 
             const bustedDraw = isBusted(dealerScoreUpdatedDraw);
+            const isGameOverDraw = bustedDraw;
             return {
                 ...state,
                 shoe: updatedShoeDealer,
@@ -102,6 +112,7 @@ export function blackJakReducer(
                 dealerScore: dealerScoreUpdatedDraw,
                 isDealerBustedFlag: bustedDraw,
                 isPlayerWinsFlag: bustedDraw,
+                isGameOver: isGameOverDraw,
             };
         case "setCurToken":
             const curToken = action.payload.tokenValue;
@@ -154,7 +165,6 @@ export function blackJakReducer(
                 betHistory: [],
             };
         case "checkForWinners":
-            //  if (state.isStandFlag) {
             console.log(state.playerScore, state.dealerScore);
             const isPlayerWin =
                 (!state.isPlayerBustedFlag &&
@@ -169,6 +179,8 @@ export function blackJakReducer(
                 state.playerScore === state.dealerScore ? true : false;
 
             const is21 = isBlackJack(state.playerHand);
+
+            const isGameOverCheck = isPlayerWin || isDealerWin || isDraw;
 
             let price: number = 0;
             if (isPlayerWin && is21) {
@@ -188,6 +200,7 @@ export function blackJakReducer(
                 isDealerWinsFlag: isDealerWin,
                 isDrawFlag: isDraw,
                 balance: state.balance + price,
+                isGameOver: isGameOverCheck,
             };
         // }
         // return state;

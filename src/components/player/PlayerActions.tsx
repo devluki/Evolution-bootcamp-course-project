@@ -4,7 +4,7 @@ import { dealayOutput } from "../../utils/utils";
 import { DELAY_TIME } from "../../models/consts";
 
 import { Button } from "../UI/Button";
-import { PlayerHand } from "./PlayerHand";
+
 import { useEffect } from "react";
 
 interface PlayerActionsProps {

@@ -132,13 +132,14 @@ export const isBlackJack = (hand: Card[]) => {
         hand[0].getScore === 11 || hand[0].getScore === 10;
     const isSecondCardAceOrJack =
         hand[1].getScore === 11 || hand[1].getScore === 10;
+    const difference = hand[0].getScore !== hand[1].getScore;
 
     console.log(
         "BLACKJACK???",
         isFirstCardAceOrJack && isSecondCardAceOrJack,
         hand,
     );
-    return isFirstCardAceOrJack && isSecondCardAceOrJack;
+    return isFirstCardAceOrJack && isSecondCardAceOrJack && difference;
 };
 
 // Delay higher order function

@@ -1,10 +1,12 @@
 interface BlackJackState {
+    isGameOver: boolean;
     isBetFlag: boolean;
     isStandFlag: boolean;
     isDoubleDownFlag: boolean;
     isPlayerBustedFlag: boolean;
     isDealerBustedFlag: boolean;
-
+    isPlayerHaveBlackJack: boolean;
+    isDealerHaveBlackJack: boolean;
     isPlayerWinsFlag: boolean;
     isDealerWinsFlag: boolean;
     isDrawFlag: boolean;
@@ -36,6 +38,7 @@ type BlackJackAction =
     | { type: "resetGame" }
     | { type: "checkForWinners" }
     | { type: "getState" }
+    | { type: "setGameIsOver" }
     | { type: "setDealerHandCopleteFlag" };
 
 enum Suit {
