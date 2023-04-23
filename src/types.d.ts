@@ -1,9 +1,10 @@
 interface BlackJackState {
     isBetFlag: boolean;
     isStandFlag: boolean;
+    isDoubleDownFlag: boolean;
     isPlayerBustedFlag: boolean;
     isDealerBustedFlag: boolean;
-    isDoubleDownFlag: boolean;
+
     isPlayerWinsFlag: boolean;
     isDealerWinsFlag: boolean;
     isDrawFlag: boolean;
@@ -23,6 +24,7 @@ type BlackJackAction =
     | { type: "init"; payload: { numberOfDecks: number } }
     | { type: "setBetFlag"; payload: { value: number } }
     | { type: "setStandFlag" }
+    | { type: "setDoubleDownFlag" }
     | { type: "hit" }
     | { type: "dealerMustDraw" }
     | { type: "doubleDown" }
@@ -76,4 +78,4 @@ type DelayFunction = (
     params: number | string | Card | Card[] | null = null,
 ) => void;
 
-type AnimationType = "slide" | "flip";
+type AnimationType = "slide" | "flip" | "rotate90";

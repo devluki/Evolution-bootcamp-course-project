@@ -57,6 +57,8 @@ export function blackJakReducer(
             const isBetFlag = true;
 
             return { ...state, isBetFlag };
+        case "setDoubleDownFlag":
+            return { ...state, isDoubleDownFlag: true };
 
         case "setStandFlag":
             const isStandFlag = true;

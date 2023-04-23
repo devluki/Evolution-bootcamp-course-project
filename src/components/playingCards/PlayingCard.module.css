@@ -14,7 +14,7 @@
     border: solid 1px black;
     box-shadow: 3px 3px 5px rgba(245, 245, 245, 0.5);
     /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
-    transition: 1.3s;
+    transition: transform 1.3s;
     transform-style: preserve-3d;
     position: absolute;
 }
@@ -40,6 +40,12 @@
     margin: 3% 3%;
 }
 
+.rotate90 {
+    animation: rotate 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
 @keyframes slidein {
     from {
         margin-left: 500%;
@@ -54,6 +60,20 @@
         margin-bottom: 0%;
         transform: rotate(0deg);
         /* width: 100%; */
+    }
+}
+@keyframes rotate {
+    from {
+        margin-left: 500%;
+        margin-top: -400%;
+
+        transform: rotate(160deg);
+    }
+
+    to {
+        margin-left: 45%;
+        margin-top: -10%;
+        transform: rotate(90deg);
     }
 }
 

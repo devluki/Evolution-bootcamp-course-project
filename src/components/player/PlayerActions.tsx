@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 // import { useEffect } from "react";
+import { dealayOutput } from "../../utils/utils";
+import { DELAY_TIME } from "../../models/consts";
 
 import { Button } from "../UI/Button";
 
@@ -47,10 +49,14 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
 
     const doubleDownHandler = () => {
         dispatch({ type: "increaseBet" });
+        dispatch({ type: "setDoubleDownFlag" });
+
         setTimeout(() => {
             dispatch({ type: "hit" });
-            stayHandler();
+            // stayHandler();
         }, 1000);
+
+        dealayOutput(stayHandler, null, DELAY_TIME * 3.5);
         // dispatch({ type: "setStandFlag" });
     };
 

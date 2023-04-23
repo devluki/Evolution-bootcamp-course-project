@@ -11,7 +11,7 @@ interface PlayerHandProps {
 }
 
 export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
-    const { playerHand, isBetFlag } = useSelector(
+    const { playerHand, isBetFlag, isDoubleDownFlag } = useSelector(
         (state: BlackJackState) => state,
     );
 
@@ -37,19 +37,28 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
     return (
         <>
             <div className={styles.container}>
-                {/* {playerHand.map((card, i) => (
-                    <PlayingCard key={i} card={card} positionOffset={i} />
-                ))} */}
-                {curHand.map((card, i) => (
-                    <PlayingCard
-                        key={i}
-                        card={card}
-                        positionOffset={i}
-                        animationType="slide"
-                    />
-                ))}
+                {curHand.map((card, i) => {
+                    if (i === 2 && isDoubleDownFlag) {
+                        return (
+                            <PlayingCard
+                                key={i}
+                                card={card}
+                                positionOffset={i}
+                                animationType="rotate90"
+                            />
+                        );
+                    }
+
+                    return (
+                        <PlayingCard
+                            key={i}
+                            card={card}
+                            positionOffset={i}
+                            animationType="slide"
+                        />
+                    );
+                })}
             </div>
-            {/* <button onClick={() => setCurHand([])}>ResetHand</button> */}
         </>
     );
 };

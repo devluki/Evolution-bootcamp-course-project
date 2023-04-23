@@ -25,6 +25,8 @@
     background-position: 10px 0, 10px 0, 0 0, 0 0;
     background-size: 10px 10px;
     background-repeat: repeat;
+    transition: transform 1.3s;
+    transform-style: preserve-3d;
     /*  */
 }
 
@@ -36,7 +38,7 @@
 
 .flip {
     animation: flip 1s;
-    transition: 0.2s;
+
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
