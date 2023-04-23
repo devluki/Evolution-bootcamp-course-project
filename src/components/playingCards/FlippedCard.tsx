@@ -1,10 +1,16 @@
 import styles from "./FlippedCard.module.css";
 
-const FlippedCard: React.FC = () => {
+interface FlippedCardProps {
+    isStandFlag: boolean;
+}
+
+const FlippedCard: React.FC<FlippedCardProps> = ({ isStandFlag }) => {
+    const animation = isStandFlag ? styles.flip : styles.slide;
+
     return (
         <>
             <div
-                className={styles.container}
+                className={`${styles.container} ${animation}`}
                 style={{ top: "5px", left: "35px" }}
             ></div>
         </>

@@ -31,7 +31,7 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
     }, [playerHand]);
 
     useEffect(() => {
-        dealayOutput(curScoreHandler, curHand, DELAY_TIME);
+        dealayOutput(curScoreHandler, curHand, 1.3 * DELAY_TIME);
     }, [curHand]);
 
     return (
@@ -41,7 +41,12 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
                     <PlayingCard key={i} card={card} positionOffset={i} />
                 ))} */}
                 {curHand.map((card, i) => (
-                    <PlayingCard key={i} card={card} positionOffset={i} />
+                    <PlayingCard
+                        key={i}
+                        card={card}
+                        positionOffset={i}
+                        animationType="slide"
+                    />
                 ))}
             </div>
             {/* <button onClick={() => setCurHand([])}>ResetHand</button> */}

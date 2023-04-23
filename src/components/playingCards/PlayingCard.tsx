@@ -4,9 +4,14 @@ import { Card } from "../../models/cards";
 interface CardProps {
     card: Card;
     positionOffset: number;
+    animationType: AnimationType;
 }
 
-const PlayingCard: React.FC<CardProps> = ({ card, positionOffset }) => {
+const PlayingCard: React.FC<CardProps> = ({
+    card,
+    positionOffset,
+    animationType,
+}) => {
     const color =
         card.getSuit === "Hearts" || card.getSuit === "Diamonds"
             ? "red"
@@ -18,7 +23,10 @@ const PlayingCard: React.FC<CardProps> = ({ card, positionOffset }) => {
     };
     return (
         <>
-            <div className={styles.container} style={offset}>
+            <div
+                className={`${styles.container} ${styles[animationType]}`}
+                style={offset}
+            >
                 <span
                     style={{ color: color }}
                     data-rank={

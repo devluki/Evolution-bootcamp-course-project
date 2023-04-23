@@ -26,8 +26,19 @@
     background-size: 10px 10px;
     background-repeat: repeat;
     /*  */
+}
+
+.slide {
     animation-duration: 1.5s;
+
     animation-name: slidein;
+}
+
+.flip {
+    animation: flip 1s;
+    transition: 0.2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 
 @keyframes slidein {
@@ -43,5 +54,26 @@
         margin-bottom: 0%;
         transform: rotate(0deg);
         /* width: 100%; */
+    }
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateY(0deg);
+        opacity: 1;
+        z-index: 1;
+    }
+    50% {
+        transform: rotateY(-90deg);
+        opacity: 1;
+        z-index: 1;
+    }
+    52% {
+        opacity: 0;
+        /* z-index: -1; */
+    }
+    100% {
+        opacity: 0;
+        /* z-index: -1; */
     }
 }

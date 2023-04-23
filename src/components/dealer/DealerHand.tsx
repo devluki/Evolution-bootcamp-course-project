@@ -44,9 +44,10 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
         console.log("Cur hand length:", curHand.length);
         for (let i = curHand.length; i < noOfIterations; i++) {
             if (curHand.length === dealerHand.length) return;
-            let k = i > 2 ? i - 1 : i;
+            let k: number = 0;
+            i === 1 ? (k = 0.5) : (k = i > 3 ? i - 1 : i);
             console.log("Iterations:", i, k);
-            dealayOutput(curHandHandler, i, 1000 + k * DELAY_TIME);
+            dealayOutput(curHandHandler, i, k * DELAY_TIME);
         }
     }, [dealerHand]);
 
@@ -65,17 +66,59 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
     return (
         <>
             <div className={styles.container}>
+                {/*  */}
                 {curHand.map((card, i) => {
                     if (!isStandFlag) {
                         if (i === 1) {
-                            return <FlippedCard key={i} />;
+                            return (
+                                <FlippedCard
+                                    key={i}
+                                    isStandFlag={isStandFlag}
+                                />
+                            );
                         }
                     }
+                    if (i === 1) {
+                        return (
+                            <PlaingCard
+                                key={i}
+                                card={card}
+                                positionOffset={i}
+                                animationType="flip"
+                            />
+                        );
+                    }
                     return (
-                        <PlaingCard key={i} card={card} positionOffset={i} />
+                        <PlaingCard
+                            key={i}
+                            card={card}
+                            positionOffset={i}
+                            animationType="slide"
+                        />
                     );
                 })}
-                {isBetFlag && !isStandFlag && <FlippedCard />}
+                {/* {curHand.map((card, i) => {
+                    if (!isStandFlag) {
+                        if (i === 1) {
+                            return (
+                                <FlippedCard
+                                    key={i}
+                                    isStandFlag={isStandFlag}
+                                />
+                            );
+                        }
+                    }
+                    return ( 
+                        <PlaingCard
+                            key={i}
+                            card={card}
+                            positionOffset={i}
+                            animationType="slide"
+                        />
+                    );
+                })} */}
+                {/*  */}
+                {isBetFlag && <FlippedCard isStandFlag={isStandFlag} />}
                 {/* {dealerHand.map((card, i) => {
                     if (!isStand) {
                         if (i === 1) {
