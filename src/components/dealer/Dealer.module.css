@@ -2,3 +2,23 @@
     position: relative;
     color: white;
 }
+
+.hand {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #feffbf;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.705);
+    animation: fadeIn 1s ease-in;
+
+    width: 100%;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

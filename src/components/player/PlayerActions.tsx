@@ -16,7 +16,7 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
         isBetFlag,
         isStandFlag,
         // isDealerBustedFlag,
-        // isPlayerBustedFlag,
+        isPlayerBustedFlag,
         currentBet,
         // isDealerWinsFlag,
         // isDrawFlag,
@@ -33,6 +33,7 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
     };
     const stayHandler = () => {
         dispatch({ type: "setStandFlag" });
+
         dispatch({ type: "dealerMustDraw" });
         dispatch({ type: "checkForWinners" });
     };
@@ -48,16 +49,14 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
     };
 
     const doubleDownHandler = () => {
-        dispatch({ type: "increaseBet" });
+        dispatch({ type: "doubleBet" });
         dispatch({ type: "setDoubleDownFlag" });
 
         setTimeout(() => {
             dispatch({ type: "hit" });
-            // stayHandler();
-        }, 1000);
+        }, 500);
 
         dealayOutput(stayHandler, null, DELAY_TIME * 3.5);
-        // dispatch({ type: "setStandFlag" });
     };
 
     const resetGameHandler = () => {

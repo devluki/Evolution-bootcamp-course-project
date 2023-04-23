@@ -22,7 +22,7 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
         // isDealerBustedFlag,
         // isDealerWinsFlag,
         // isPlayerWinsFlag,
-        // isPlayerBustedFlag,
+        isPlayerBustedFlag,
         // isDrawFlag,
     } = useSelector((state: BlackJackState) => state);
 
@@ -44,8 +44,9 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
         console.log("Cur hand length:", curHand.length);
         for (let i = curHand.length; i < noOfIterations; i++) {
             if (curHand.length === dealerHand.length) return;
+            if (i === 2 && isPlayerBustedFlag) return;
             let k: number = 0;
-            i === 1 ? (k = 0.5) : (k = i > 3 ? i - 1 : i);
+            i === 1 ? (k = 0.5) : (k = i > 5 ? i - 1 : i); // WTF TODO -> refactor this to complex
             console.log("Iterations:", i, k);
             dealayOutput(curHandHandler, i, k * DELAY_TIME);
         }

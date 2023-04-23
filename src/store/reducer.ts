@@ -1,3 +1,4 @@
+import { stat } from "fs";
 import {
     generateShoe,
     shuffle,
@@ -119,6 +120,17 @@ export function blackJakReducer(
                 currentBet: betValue,
                 betHistory: [...state.betHistory, state.selectedTokenVal],
                 balance: updatedBalance,
+            };
+        case "doubleBet":
+            const doubledBet = [...state.betHistory, ...state.betHistory];
+            const doubledBetValue = doubledBet.reduce((acc, cur) => acc + cur);
+            const balance = state.balance - doubledBetValue / 2;
+
+            return {
+                ...state,
+                betHistory: doubledBet,
+                currentBet: doubledBetValue,
+                balance,
             };
         case "undoBet":
             const lastBetValue = state.betHistory.pop() || 0;

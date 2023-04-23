@@ -48,12 +48,12 @@ function App() {
             )}
 
             {/* {isGamerOver && <Message messageText="Game over" />} */}
-            {isDealerHandCopmlete && isDealerWinsFlag && (
-                <Message messageText="Dealer win!" />
-            )}
-            {isDealerHandCopmlete && isPlayerWinsFlag && (
-                <Message messageText="Player win!" />
-            )}
+            {isDealerHandCopmlete &&
+                isDealerWinsFlag &&
+                !isPlayerBustedFlag && <Message messageText="Dealer win!" />}
+            {isDealerHandCopmlete &&
+                isPlayerWinsFlag &&
+                !isDealerBustedFlag && <Message messageText="Player win!" />}
             <Player />
             <BettingSpot />
 

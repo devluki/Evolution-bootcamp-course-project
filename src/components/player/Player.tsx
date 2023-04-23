@@ -21,8 +21,7 @@ export const Player = () => {
     return (
         <>
             <div className={styles.container}>
-                {/* {isBetFlag && <p>Your score:{playerScore}</p>} */}
-                {isBetFlag && <p>Your score:{curScore}</p>}
+                {isBetFlag && <p className={styles.hand}>Player hand</p>}
                 <ScoreIndicator
                     score={curScore}
                     isBetFlag={isBetFlag}

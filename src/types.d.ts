@@ -28,6 +28,7 @@ type BlackJackAction =
     | { type: "hit" }
     | { type: "dealerMustDraw" }
     | { type: "doubleDown" }
+    | { type: "doubleBet" }
     | { type: "setCurToken"; payload: { tokenValue: number } }
     | { type: "increaseBet" }
     | { type: "resetBet" }

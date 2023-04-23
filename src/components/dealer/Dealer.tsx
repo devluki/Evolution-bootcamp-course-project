@@ -23,13 +23,7 @@ export const Dealer = () => {
     return (
         <>
             <div className={styles.container}>
-                {isBetFlag && (
-                    <p>
-                        Dealer score:
-                        {(!isStandFlag && dealerHand[0]?.getScore) || ""}
-                        {isStandFlag && curScore}
-                    </p>
-                )}
+                {isBetFlag && <p className={styles.hand}>Dealer hand</p>}
                 {<DealerHand curScoreHandler={curScoreHandler} />}
                 <ScoreIndicator
                     score={
