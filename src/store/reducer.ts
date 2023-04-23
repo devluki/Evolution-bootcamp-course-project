@@ -134,7 +134,9 @@ export function blackJakReducer(
         case "doubleBet":
             const doubledBet = [...state.betHistory, ...state.betHistory];
             const doubledBetValue = doubledBet.reduce((acc, cur) => acc + cur);
-            const balance = state.balance - doubledBetValue / 2;
+            const balance = !state.isPlayerBustedFlag
+                ? state.balance - doubledBetValue / 2
+                : 0;
 
             return {
                 ...state,
