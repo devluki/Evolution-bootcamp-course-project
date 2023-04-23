@@ -1,4 +1,3 @@
-import { stat } from "fs";
 import {
     generateShoe,
     shuffle,
@@ -74,14 +73,14 @@ export function blackJakReducer(
             );
             console.log(hand, state);
             const playerScoreUpdated = countHandScore([...hand]);
-            const bustedHit = isBusted(playerScoreUpdated);
+            const isPlayerBusted = isBusted(playerScoreUpdated);
 
             return {
                 ...state,
                 shoe: updatedShoe,
                 playerHand: hand,
                 playerScore: playerScoreUpdated,
-                isPlayerBustedFlag: bustedHit,
+                isPlayerBustedFlag: isPlayerBusted,
                 // isDealerWinsFlag: true,
             };
         case "dealerMustDraw": //Change name

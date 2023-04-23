@@ -76,7 +76,7 @@ interface BetIndicatorProps {
 }
 
 type DelayFunction = (
-    params: number | string | Card | Card[] | null = null,
+    params: number | boolean | string | Card | Card[] | null = null,
 ) => void;
 
 type AnimationType = "slide" | "flip" | "rotate90";

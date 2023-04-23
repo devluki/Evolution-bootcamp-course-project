@@ -1,5 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { DELAY_TIME } from "./models/consts";
+import { dealayOutput } from "./utils/utils";
 
 import { Player } from "./components/player/Player";
 import { Dealer } from "./components/dealer/Dealer";
@@ -12,9 +15,15 @@ import { PlayerActions } from "./components/player/PlayerActions";
 import "./App.css";
 
 function App() {
+    const [isBusted, setIsBusted] = useState<boolean>(false);
+    const dispatch = useDispatch();
+    const isBustedHandler = () => {
+        setIsBusted(true);
+    };
+
     const {
         isBetFlag,
-        isStandFlag,
+        playerHand,
         isPlayerBustedFlag,
         isDealerBustedFlag,
         isDealerWinsFlag,
@@ -25,8 +34,6 @@ function App() {
         isDealerHandCopmlete,
     } = useSelector((state: BlackJackState) => state);
 
-    // Render current communicate ?? TimeOutFn??
-
     const isGamerOver =
         isPlayerBustedFlag ||
         isDealerBustedFlag ||
@@ -34,20 +41,29 @@ function App() {
         isDrawFlag ||
         isPlayerWinsFlag;
 
+    const busted = isPlayerBustedFlag || isDealerBustedFlag;
+
+    useEffect(() => {
+        if (playerHand.length === 0) {
+            setIsBusted(false);
+        } else if (isPlayerBustedFlag) {
+            dealayOutput(isBustedHandler, null, 2 * DELAY_TIME);
+        }
+    }, [playerHand]);
+
     return (
         <div className="App">
             <Dealer />
 
             {!isBetFlag && <Message messageText="Please, place your bet!" />}
-            {isPlayerBustedFlag && <Message messageText="Player busted!" />}
+            {isBusted && <Message messageText="Player busted!" />}
             {isDealerHandCopmlete && isDealerBustedFlag && (
                 <Message messageText="Dealer busted!" />
             )}
-            {isDealerHandCopmlete && isDrawFlag && (
+            {!busted && isDealerHandCopmlete && isDrawFlag && (
                 <Message messageText="Draw" />
             )}
 
-            {/* {isGamerOver && <Message messageText="Game over" />} */}
             {isDealerHandCopmlete &&
                 isDealerWinsFlag &&
                 !isPlayerBustedFlag && <Message messageText="Dealer win!" />}

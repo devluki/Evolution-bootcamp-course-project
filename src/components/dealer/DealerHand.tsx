@@ -19,11 +19,8 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
         dealerHand,
         isStandFlag,
         isBetFlag,
-        // isDealerBustedFlag,
-        // isDealerWinsFlag,
-        // isPlayerWinsFlag,
+
         isPlayerBustedFlag,
-        // isDrawFlag,
     } = useSelector((state: BlackJackState) => state);
 
     const dispatch = useDispatch();
@@ -63,6 +60,12 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
             dealayOutput(dispatchHandler, null, DELAY_TIME * 2);
         }
     }, [curHand, isStandFlag]);
+
+    useEffect(() => {
+        if (dealerHand.length === 0) {
+            setCurHand([]);
+        }
+    }, [dealerHand]);
 
     return (
         <>

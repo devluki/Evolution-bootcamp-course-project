@@ -27,6 +27,11 @@ const PlayingCard: React.FC<CardProps> = ({
                 className={`${styles.container} ${styles[animationType]}`}
                 style={offset}
             >
+                {card.getName.toLocaleLowerCase() === "ace" && (
+                    <span className={styles.acescore} style={{ color: color }}>
+                        Score: {card.getScore}
+                    </span>
+                )}
                 <span
                     style={{ color: color }}
                     data-rank={

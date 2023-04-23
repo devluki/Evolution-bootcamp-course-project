@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from "react";
+
 import { dealayOutput } from "../../utils/utils";
 import { DELAY_TIME } from "../../models/consts";
 
 import { Button } from "../UI/Button";
+import { PlayerHand } from "./PlayerHand";
+import { useEffect } from "react";
 
 interface PlayerActionsProps {
     isGameOver: boolean;
@@ -15,12 +17,15 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
         betHistory,
         isBetFlag,
         isStandFlag,
-        // isDealerBustedFlag,
-        isPlayerBustedFlag,
+        playerHand,
         currentBet,
-        // isDealerWinsFlag,
-        // isDrawFlag,
-        // isPlayerWinsFlag,
+        isPlayerBustedFlag,
+        balance,
+
+        isDealerBustedFlag,
+        isDealerWinsFlag,
+        isDrawFlag,
+        isPlayerWinsFlag,
     } = useSelector((state: BlackJackState) => state);
 
     const init = () => {
@@ -67,6 +72,12 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
         dispatch({ type: "getState" });
     };
 
+    useEffect(() => {
+        if (!isPlayerBustedFlag) return;
+        dealayOutput(stayHandler, null, 2 * DELAY_TIME);
+        // stayHandler();
+    }, [isPlayerBustedFlag]);
+
     // const isBusted = isDealerBustedFlag || isPlayerBustedFlag;
 
     // useEffect(() => {
@@ -79,7 +90,7 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
     //     ) {
     //         setTimeout(() => {
     //             dispatch({ type: "resetGame" });
-    //         }, 3000);
+    //         }, 4000);
     //     }
     // }, [
     //     isDealerBustedFlag,
@@ -115,15 +126,18 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
                 {!isBetFlag && betHistory.length > 0 && (
                     <button onClick={init}>Deal cards!</button>
                 )}
-                {isBetFlag && !isStandFlag && (
+                {!isPlayerBustedFlag && isBetFlag && !isStandFlag && (
                     <button onClick={hitHandler}>Hit</button>
                 )}
                 {isBetFlag && !isStandFlag && (
                     <button onClick={stayHandler}>Stay</button>
                 )}
-                {isBetFlag && !isStandFlag && (
-                    <button onClick={doubleDownHandler}>Double Down??</button>
-                )}
+                {balance > currentBet &&
+                    isBetFlag &&
+                    !isStandFlag &&
+                    playerHand.length < 3 && (
+                        <button onClick={doubleDownHandler}>Double Down</button>
+                    )}
                 <button onClick={getState}>GET CURRENT STATE</button>
             </div>
         </>

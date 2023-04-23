@@ -46,6 +46,24 @@
     animation-fill-mode: forwards;
 }
 
+.acescore {
+    position: absolute;
+    font-weight: bold;
+    left: -20%;
+    top: 50%;
+    transform: translateY(-50%) rotateZ(-90deg);
+    text-transform: uppercase;
+    opacity: 0;
+    /* filter: brightness(150%); */
+    filter: opacity(0.7);
+    transition: 0.6s;
+}
+
+.container:hover .acescore {
+    opacity: 1;
+    /* mix-blend-mode: multiply; */
+}
+
 @keyframes slidein {
     from {
         margin-left: 500%;

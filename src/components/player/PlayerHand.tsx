@@ -34,6 +34,12 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
         dealayOutput(curScoreHandler, curHand, 1.3 * DELAY_TIME);
     }, [curHand]);
 
+    useEffect(() => {
+        if (playerHand.length === 0) {
+            setCurHand([]);
+        }
+    }, [playerHand]);
+
     return (
         <>
             <div className={styles.container}>
