@@ -1,6 +1,13 @@
 .container {
     position: relative;
     max-height: 30vh;
-    min-height: 220px;
+
+    min-height: 100px;
     /* background-color: #fff; */
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        min-height: 200px;
+    }
 }

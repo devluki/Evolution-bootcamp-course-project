@@ -13,7 +13,7 @@ export const BalanceIndicator: React.FC<BalanceIndicatorProps> = ({
                 </div>
                 <Timer />
                 <div className={styles.curBet}>
-                    <span>Bet value: </span>
+                    <span>Bet: </span>
                     <span>$</span> {currentBetValue}
                 </div>
             </div>

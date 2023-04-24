@@ -1,7 +1,9 @@
 .container {
     position: absolute;
-    width: 150px;
-    height: 220px;
+    width: 100px;
+
+    height: 150px;
+
     max-height: 25vh;
     background-color: white;
     background-image: URL("../../assets/logo.png");
@@ -72,10 +74,16 @@
     }
     52% {
         opacity: 0;
-        /* z-index: -1; */
     }
     100% {
         opacity: 0;
-        /* z-index: -1; */
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        width: 150px;
+
+        height: 200px;
     }
 }

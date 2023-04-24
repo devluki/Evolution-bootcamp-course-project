@@ -6,6 +6,7 @@ import { countHandScore } from "../../utils/utils";
 
 import { ScoreIndicator } from "../UI/ScoreIndicator";
 import { BlackJackIndicator } from "../UI/BlackJackIndicator";
+import { Message } from "../UI/Message";
 
 import styles from "./Dealer.module.css";
 
@@ -23,21 +24,25 @@ export const Dealer = () => {
         isStandFlag,
         dealerHand,
         isBetFlag,
-        isGameOver,
-        isDrawFlag,
         dealerScore,
         isDealerHaveBlackJack,
-        isDealerHandCopmlete,
+        isPlayerBustedFlag,
     } = useSelector((state: BlackJackState) => state);
 
-    //   Dealer draws cards
-
     useEffect(() => {
-        // if (isGameOver && isDealerHandCopmlete) {
-        if (isGameOver) {
+        if (!isStandFlag) return;
+        if (curScore === dealerScore && !isPlayerBustedFlag) {
             setTimeout(() => {
-                dispatch({ type: "resetGame" });
-            }, 4500);
+                dispatch({ type: "setDealersTurnIsOver" });
+            }, 2000);
+        }
+        if (
+            isPlayerBustedFlag &&
+            curScore === dealerHand[0].getScore + dealerHand[1].getScore
+        ) {
+            setTimeout(() => {
+                dispatch({ type: "setDealersTurnIsOver" });
+            }, 2000);
         }
     }, [curScore]);
 
@@ -46,7 +51,7 @@ export const Dealer = () => {
             <div className={styles.container}>
                 {isBetFlag && <p className={styles.hand}>Dealer hand</p>}
                 {<DealerHand curScoreHandler={curScoreHandler} />}
-                {curScore !== 21 && (
+                {!isDealerHaveBlackJack && (
                     <ScoreIndicator
                         score={
                             (!isStandFlag && dealerHand[0]?.getScore) ||
@@ -56,10 +61,14 @@ export const Dealer = () => {
                         isPlayer={false}
                     />
                 )}
-                {isDealerHaveBlackJack &&
-                    curScore === 21 &&
-                    dealerHand.length === 2 && <BlackJackIndicator />}
+                {isDealerHaveBlackJack && isStandFlag && <BlackJackIndicator />}
             </div>
+
+            {curScore > 21 && dealerHand.length > 0 && (
+                <div className={styles.message}>
+                    <Message messageText="Dealer is Busted!" color="white" />
+                </div>
+            )}
         </>
     );
 };

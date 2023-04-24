@@ -16,16 +16,19 @@ const initialState: BlackJackState = {
     isDoubleDownFlag: false,
     isPlayerWinsFlag: false,
     isDealerWinsFlag: false,
-    isDealerHandCopmlete: false,
+    isPlayerBustedFlag: false,
+    isDealerBustedFlag: false,
+    // isDealerHandCopmlete: false,
+
     isDrawFlag: false,
     isPlayerHaveBlackJack: false,
     isDealerHaveBlackJack: false,
+    isPlayersTurnIsOver: false,
+    isDealersTurnIsOver: false,
     playerScore: 0,
     dealerScore: 0,
     balance: 100,
     currentBet: 0,
-    isPlayerBustedFlag: false,
-    isDealerBustedFlag: false,
     selectedTokenVal: 0,
     shoe: [],
     playerHand: [],
@@ -104,6 +107,7 @@ export function blackJakReducer(
             ]);
 
             const bustedDraw = isBusted(dealerScoreUpdatedDraw);
+            console.log("Busted draw", bustedDraw);
             const isGameOverDraw = bustedDraw;
             return {
                 ...state,
@@ -134,9 +138,13 @@ export function blackJakReducer(
         case "doubleBet":
             const doubledBet = [...state.betHistory, ...state.betHistory];
             const doubledBetValue = doubledBet.reduce((acc, cur) => acc + cur);
-            const balance = !state.isPlayerBustedFlag
-                ? state.balance - doubledBetValue / 2
-                : 0;
+            const balance = state.balance - doubledBetValue / 2;
+            console.log(
+                "Is player busted:",
+                state.isPlayerBustedFlag,
+                "playerScore",
+                state.playerScore,
+            );
 
             return {
                 ...state,
@@ -191,11 +199,10 @@ export function blackJakReducer(
             if (isPlayerWin && !is21) {
                 price = state.currentBet * 2;
             }
-            if (isDraw) {
+            if (isDraw && !state.isPlayerBustedFlag) {
                 price = state.currentBet;
             }
 
-            // const price
             return {
                 ...state,
                 isPlayerWinsFlag: isPlayerWin,
@@ -204,16 +211,20 @@ export function blackJakReducer(
                 balance: state.balance + price,
                 isGameOver: isGameOverCheck,
             };
-        // }
-        // return state;
+
         case "resetGame":
             const newBalance = state.balance;
             return { ...initialState, balance: newBalance };
         case "getState":
             console.log("FINAL STATE:", state);
             return state;
-        case "setDealerHandCopleteFlag":
-            return { ...state, isDealerHandCopmlete: true };
+        // case "setDealerHandCopleteFlag":
+        //     return { ...state, isDealerHandCopmlete: true };
+        case "setPlayersTurnIsOver":
+            const isTurnOver = action.payload.isOver;
+            return { ...state, isPlayersTurnIsOver: isTurnOver };
+        case "setDealersTurnIsOver":
+            return { ...state, isDealersTurnIsOver: true };
     }
     return state;
 }

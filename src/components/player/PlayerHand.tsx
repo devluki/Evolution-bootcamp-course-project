@@ -11,13 +11,14 @@ interface PlayerHandProps {
 }
 
 export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
-    const { playerHand, isBetFlag, isDoubleDownFlag, isPlayerHaveBlackJack } =
-        useSelector((state: BlackJackState) => state);
+    const { playerHand, isBetFlag, isDoubleDownFlag } = useSelector(
+        (state: BlackJackState) => state,
+    );
 
     const [curHand, setCurHand] = useState<Card[]>([]);
 
-    // Rewrite for one card dealt, reset additional step for a
-
+    // Rewrite for one card dealt, reset additional step for a//
+    // Updates UI hand in delay
     useEffect(() => {
         for (let i = curHand.length; i < playerHand.length; i++) {
             if (curHand.length === playerHand.length) return;
@@ -29,10 +30,12 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
         }
     }, [playerHand]);
 
+    // Updates score when local curHand gets updated
     useEffect(() => {
         dealayOutput(curScoreHandler, curHand, 1.3 * DELAY_TIME);
     }, [curHand]);
 
+    // Resets local state (curHand) when game is over
     useEffect(() => {
         if (playerHand.length === 0) {
             setCurHand([]);

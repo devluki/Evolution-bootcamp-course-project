@@ -10,7 +10,9 @@ interface BlackJackState {
     isPlayerWinsFlag: boolean;
     isDealerWinsFlag: boolean;
     isDrawFlag: boolean;
-    isDealerHandCopmlete: boolean;
+    // isDealerHandCopmlete: boolean;
+    isPlayersTurnIsOver: boolean;
+    isDealersTurnIsOver: boolean;
     currentBet: number;
     balance: number;
     playerScore: number;
@@ -39,7 +41,10 @@ type BlackJackAction =
     | { type: "checkForWinners" }
     | { type: "getState" }
     | { type: "setGameIsOver" }
-    | { type: "setDealerHandCopleteFlag" };
+    | { type: "setPlayersTurnIsOver"; payload: { isOver: boolean } }
+    | { type: "setDealersTurnIsOver" }
+    | { type: "setGameIsOver" };
+// | { type: "setDealerHandCopleteFlag" };
 
 enum Suit {
     Spades,
@@ -55,11 +60,14 @@ interface BalanceIndicatorProps {
 
 interface MessageProps {
     messageText: string;
+    color: string;
 }
 
 interface ButtonProps {
     onClick: () => void;
     innerText: string;
+    disabled: boolean;
+    color: "color1" | "color2" | "color3";
 }
 
 interface ClockProps {

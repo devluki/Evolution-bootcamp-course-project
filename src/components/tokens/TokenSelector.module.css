@@ -1,6 +1,19 @@
 .container {
+    position: absolute;
+    top: 35%;
+    left: 0;
     display: flex;
+    flex-direction: column;
     transition: 1.5s;
     flex-wrap: wrap;
     width: 50%;
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        position: relative;
+        left: auto;
+        top: auto;
+        flex-direction: row;
+    }
 }

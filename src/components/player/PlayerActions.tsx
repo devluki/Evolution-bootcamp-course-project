@@ -7,6 +7,8 @@ import { Button } from "../UI/Button";
 
 import { useEffect } from "react";
 
+import styles from "./PlayerActions.module.css";
+
 interface PlayerActionsProps {
     isGameOver: boolean;
 }
@@ -21,11 +23,9 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
         currentBet,
         isPlayerBustedFlag,
         balance,
-
-        isDealerBustedFlag,
-        isDealerWinsFlag,
-        isDrawFlag,
-        isPlayerWinsFlag,
+        isPlayersTurnIsOver,
+        isDealersTurnIsOver,
+        isDoubleDownFlag,
     } = useSelector((state: BlackJackState) => state);
 
     const init = () => {
@@ -35,12 +35,20 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
 
     const hitHandler = () => {
         dispatch({ type: "hit" });
+        dispatch({
+            type: "setPlayersTurnIsOver",
+            payload: { isOver: false },
+        });
     };
     const stayHandler = () => {
         dispatch({ type: "setStandFlag" });
 
         dispatch({ type: "dealerMustDraw" });
-        dispatch({ type: "checkForWinners" });
+
+        dispatch({
+            type: "setPlayersTurnIsOver",
+            payload: { isOver: false },
+        });
     };
 
     const resetBetHandler = () => {
@@ -64,81 +72,82 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
         dealayOutput(stayHandler, null, DELAY_TIME * 3.5);
     };
 
-    const resetGameHandler = () => {
-        dispatch({ type: "resetGame" });
-    };
-
-    const getState = () => {
-        dispatch({ type: "getState" });
-    };
-
     useEffect(() => {
         if (!isPlayerBustedFlag) return;
         dealayOutput(stayHandler, null, 2 * DELAY_TIME);
-        // stayHandler();
     }, [isPlayerBustedFlag]);
 
-    // const isBusted = isDealerBustedFlag || isPlayerBustedFlag;
-
-    // useEffect(() => {
-    //     if (
-    //         isDealerBustedFlag ||
-    //         isPlayerBustedFlag ||
-    //         isDealerWinsFlag ||
-    //         isDrawFlag ||
-    //         isPlayerWinsFlag
-    //     ) {
-    //         setTimeout(() => {
-    //             dispatch({ type: "resetGame" });
-    //         }, 4000);
-    //     }
-    // }, [
-    //     isDealerBustedFlag,
-    //     isPlayerBustedFlag,
-    //     dispatch,
-    //     isDealerWinsFlag,
-    //     isDrawFlag,
-    //     isPlayerWinsFlag,
-    // ]);
+    useEffect(() => {
+        if (!isDealersTurnIsOver) return;
+        dispatch({ type: "checkForWinners" });
+    }, [isDealersTurnIsOver]);
 
     return (
         <>
-            <div>
-                {isGameOver && (
-                    <Button onClick={resetGameHandler} innerText="Reset" />
+            <div className={styles.container}>
+                {!isBetFlag && betHistory.length > 0 && (
+                    <Button
+                        onClick={init}
+                        disabled={currentBet === 0}
+                        innerText="Deal"
+                        color="color2"
+                    />
                 )}
                 {!isBetFlag && (
                     <div>
-                        <button
+                        <Button
                             onClick={undoBetHandler}
                             disabled={currentBet === 0}
-                        >
-                            Undo BET
-                        </button>
-                        <button
+                            innerText="Undo"
+                            color="color1"
+                        />
+
+                        <Button
                             onClick={resetBetHandler}
                             disabled={currentBet === 0}
-                        >
-                            Reset BET
-                        </button>
+                            innerText="Reset BET"
+                            color="color1"
+                        />
                     </div>
                 )}
-                {!isBetFlag && betHistory.length > 0 && (
-                    <button onClick={init}>Deal cards!</button>
+
+                {isBetFlag && (
+                    <Button
+                        onClick={hitHandler}
+                        disabled={
+                            !isPlayersTurnIsOver ||
+                            isPlayerBustedFlag ||
+                            isDoubleDownFlag
+                        }
+                        innerText="Hit"
+                        color="color3"
+                    />
                 )}
-                {!isPlayerBustedFlag && isBetFlag && !isStandFlag && (
-                    <button onClick={hitHandler}>Hit</button>
-                )}
-                {isBetFlag && !isStandFlag && (
-                    <button onClick={stayHandler}>Stay</button>
+                {isBetFlag && (
+                    <Button
+                        onClick={stayHandler}
+                        disabled={
+                            !isPlayersTurnIsOver ||
+                            isPlayerBustedFlag ||
+                            isDoubleDownFlag
+                        }
+                        innerText="stay"
+                        color="color1"
+                    />
                 )}
                 {balance > currentBet &&
                     isBetFlag &&
                     !isStandFlag &&
                     playerHand.length < 3 && (
-                        <button onClick={doubleDownHandler}>Double Down</button>
+                        <Button
+                            onClick={doubleDownHandler}
+                            disabled={
+                                !isPlayersTurnIsOver || isPlayerBustedFlag
+                            }
+                            innerText="double down"
+                            color="color2"
+                        />
                     )}
-                <button onClick={getState}>GET CURRENT STATE</button>
             </div>
         </>
     );

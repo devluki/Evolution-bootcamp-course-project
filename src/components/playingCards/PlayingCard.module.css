@@ -1,18 +1,20 @@
 .container {
     left: 0;
     top: 0;
-    width: 150px;
-    height: 220px;
+    width: 100px;
+
+    height: 150px;
+
     max-height: 25vh;
 
     background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 20px;
-    border-radius: 6px;
+    font-size: 1.1em;
+    border-radius: 0.4em;
     border: solid 1px black;
-    box-shadow: 3px 3px 5px rgba(245, 245, 245, 0.5);
+    /* box-shadow: 3px 3px 5px rgba(245, 245, 245, 0.5); */
     /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
     transition: transform 1.3s;
     transform-style: preserve-3d;
@@ -33,7 +35,7 @@
     transform: rotate(180deg);
 }
 .center::after {
-    font-size: 5em;
+    font-size: 3em;
 }
 
 .card {
@@ -54,14 +56,13 @@
     transform: translateY(-50%) rotateZ(-90deg);
     text-transform: uppercase;
     opacity: 0;
-    /* filter: brightness(150%); */
+
     filter: opacity(0.7);
     transition: 0.6s;
 }
 
 .container:hover .acescore {
     opacity: 1;
-    /* mix-blend-mode: multiply; */
 }
 
 @keyframes slidein {
@@ -70,14 +71,12 @@
         margin-top: -400%;
         margin-bottom: 70%;
         transform: rotate(160deg);
-        /* width: 300%; */
     }
 
     to {
         margin-left: 0%;
         margin-bottom: 0%;
         transform: rotate(0deg);
-        /* width: 100%; */
     }
 }
 @keyframes rotate {
@@ -145,5 +144,15 @@
     100% {
         transform: rotateY(0deg);
         opacity: 1;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        width: 150px;
+        height: 200px;
+    }
+    .center::after {
+        font-size: 5em;
     }
 }

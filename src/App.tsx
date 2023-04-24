@@ -1,8 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-import { DELAY_TIME } from "./models/consts";
-import { dealayOutput } from "./utils/utils";
+import { useEffect } from "react";
 
 import { Player } from "./components/player/Player";
 import { Dealer } from "./components/dealer/Dealer";
@@ -15,15 +13,11 @@ import { PlayerActions } from "./components/player/PlayerActions";
 import "./App.css";
 
 function App() {
-    const [isBusted, setIsBusted] = useState<boolean>(false);
     const dispatch = useDispatch();
-    const isBustedHandler = () => {
-        setIsBusted(true);
-    };
 
     const {
         isBetFlag,
-        playerHand,
+
         isPlayerBustedFlag,
         isDealerBustedFlag,
         isDealerWinsFlag,
@@ -31,8 +25,9 @@ function App() {
         isDrawFlag,
         balance,
         currentBet,
-        isDealerHandCopmlete,
+
         betHistory,
+        isDealersTurnIsOver,
     } = useSelector((state: BlackJackState) => state);
 
     const isGamerOver =
@@ -45,40 +40,45 @@ function App() {
     const busted = isPlayerBustedFlag || isDealerBustedFlag;
 
     useEffect(() => {
-        if (playerHand.length === 0) {
-            setIsBusted(false);
-        } else if (isPlayerBustedFlag) {
-            dealayOutput(isBustedHandler, null, 2 * DELAY_TIME);
+        if (isDealersTurnIsOver) {
+            setTimeout(() => {
+                dispatch({ type: "resetGame" });
+            }, 2500);
         }
-    }, [playerHand]);
+    }, [isDealersTurnIsOver]);
 
     return (
         <div className="App">
             <Dealer />
 
-            {!isBetFlag && balance > 5 && (
-                <Message messageText="Place the bet to start!" />
+            {!isBetFlag && balance >= 5 && betHistory.length === 0 && (
+                <Message messageText="Place bet to start!" color="white" />
             )}
-            {!isBetFlag && balance < 5 && betHistory.length === 0 && (
-                <Message messageText="Please buy tokens to continue!" />
-            )}
-            {isBusted && <Message messageText="Player busted!" />}
-            {isDealerHandCopmlete && isDealerBustedFlag && (
-                <Message messageText="Dealer busted!" />
-            )}
-            {!busted && isDealerHandCopmlete && isDrawFlag && (
-                <Message messageText="Draw" />
+            {!isBetFlag && balance >= 5 && betHistory.length !== 0 && (
+                <Message
+                    messageText="Select deal to play the game!"
+                    color="white"
+                />
             )}
 
-            {isDealerHandCopmlete &&
-                isDealerWinsFlag &&
-                !isPlayerBustedFlag && <Message messageText="Dealer win!" />}
-            {isDealerHandCopmlete &&
-                isPlayerWinsFlag &&
-                !isDealerBustedFlag && <Message messageText="Player win!" />}
+            {!isBetFlag && balance < 5 && betHistory.length === 0 && (
+                <Message
+                    messageText="Please buy tokens to continue!"
+                    color="white"
+                />
+            )}
+            {!busted && isDealersTurnIsOver && isDrawFlag && (
+                <Message messageText="Draw" color="white" />
+            )}
+
+            {isDealersTurnIsOver && isDealerWinsFlag && !isPlayerBustedFlag && (
+                <Message messageText="Dealer win!" color="white" />
+            )}
+            {isDealersTurnIsOver && isPlayerWinsFlag && !isDealerBustedFlag && (
+                <Message messageText="Player win!" color="white" />
+            )}
             <Player />
             <BettingSpot />
-
             <div className="actions">
                 <TokenSelector />
 

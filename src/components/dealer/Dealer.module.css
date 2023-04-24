@@ -1,6 +1,7 @@
 .container {
     position: relative;
     color: white;
+    height: 200px;
 }
 
 .hand {
@@ -20,5 +21,13 @@
     }
     to {
         opacity: 1;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        position: relative;
+        color: white;
+        height: auto;
     }
 }

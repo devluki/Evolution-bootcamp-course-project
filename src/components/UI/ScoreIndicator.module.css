@@ -1,13 +1,13 @@
 .container {
     position: absolute;
-    left: -40%;
-    top: 50%;
+    left: -20%;
+    top: 40%;
     z-index: 3;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 3.2em;
-    height: 3.2em;
+    width: 2.5em;
+    height: 2.5em;
     border-radius: 50%;
     background: rgb(191, 164, 84);
     box-shadow: inset 2px 4px 5px 0px #fffefcce, inset 0px 0px 5px 2px #1b1b1aa2,
@@ -19,7 +19,7 @@
 
 .txt {
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1em;
     color: #feffbf;
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.705);
 }
@@ -48,4 +48,17 @@
     scale: 1.5;
     box-shadow: inset 3px 5px 10px 3px #fffefcce,
         inset 0px 0px 6px 3px #1b1b1aa2, 0px 8px 10px #1a1a1a;
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        width: 3.2em;
+        height: 3.2em;
+        left: -40%;
+        top: 50%;
+    }
+
+    .txt {
+        font-size: 1.5em;
+    }
 }

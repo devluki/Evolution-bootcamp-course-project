@@ -7,6 +7,7 @@ import { PlayerHand } from "./PlayerHand";
 import { BlackJackIndicator } from "../UI/BlackJackIndicator";
 import { DELAY_TIME } from "../../models/consts";
 import { dealayOutput } from "../../utils/utils";
+import { Message } from "../UI/Message";
 
 import styles from "./Player.module.css";
 
@@ -15,9 +16,9 @@ export const Player = () => {
     const {
         isBetFlag,
         isPlayerHaveBlackJack,
+        playerScore,
         playerHand,
-        isDealerHandCopmlete,
-        isGameOver,
+        // isPlayerBustedFlag,
     } = useSelector((state: BlackJackState) => state);
 
     const [curScore, setCurScore] = useState<number>(0);
@@ -30,7 +31,6 @@ export const Player = () => {
 
     const blackJackHandler = () => {
         dispatch({ type: "setStandFlag" });
-
         dispatch({ type: "dealerMustDraw" });
         dispatch({ type: "checkForWinners" });
     };
@@ -41,20 +41,23 @@ export const Player = () => {
         }
     }, [curScore]);
 
-    // useEffect(() => {
-    //     // if (isGameOver && isDealerHandCopmlete) {
-    //     if (isGameOver && !isDealerHandCopmlete) {
-    //         setTimeout(() => {
-    //             dispatch({ type: "resetGame" });
-    //         }, 4500);
-    //     }
-    // }, [curScore]);
+    useEffect(() => {
+        if (!isBetFlag) return;
+        if (curScore === playerScore) {
+            setTimeout(() => {
+                dispatch({
+                    type: "setPlayersTurnIsOver",
+                    payload: { isOver: true },
+                });
+            }, 1000);
+        }
+    }, [curScore]);
 
     return (
         <>
             <div className={styles.container}>
                 {isBetFlag && <p className={styles.hand}>Player hand</p>}
-                {curScore !== 21 && !isPlayerHaveBlackJack && (
+                {!isPlayerHaveBlackJack && (
                     <ScoreIndicator
                         score={curScore}
                         isBetFlag={isBetFlag}
@@ -67,6 +70,11 @@ export const Player = () => {
 
                 <PlayerHand curScoreHandler={curScoreHandler} />
             </div>
+            {curScore > 21 && playerHand.length > 0 && (
+                <div className={styles.message}>
+                    <Message messageText="Player is Busted!" color="white" />
+                </div>
+            )}
         </>
     );
 };

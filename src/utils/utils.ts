@@ -71,7 +71,7 @@ const isAceInHandCheck = (hand: Card[]) => {
     return { isAceInHand, aceIndexes };
 };
 
-// Counts current score of hands Ace could be scored as 1 or 10 depends on total hand score
+// Counts current score of hands Ace could be scored as 1 or 11 depends on total hand score
 export const countHandScore = (hand: Card[]) => {
     let score: number = count(hand);
     const { isAceInHand, aceIndexes } = isAceInHandCheck(hand);
