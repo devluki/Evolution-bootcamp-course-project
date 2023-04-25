@@ -26,6 +26,7 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
         isPlayersTurnIsOver,
         isDealersTurnIsOver,
         isDoubleDownFlag,
+        isPlayerHaveBlackJack,
     } = useSelector((state: BlackJackState) => state);
 
     const init = () => {
@@ -117,7 +118,8 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
                         disabled={
                             !isPlayersTurnIsOver ||
                             isPlayerBustedFlag ||
-                            isDoubleDownFlag
+                            isDoubleDownFlag ||
+                            isPlayerHaveBlackJack
                         }
                         innerText="Hit"
                         color="color3"
@@ -129,7 +131,8 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
                         disabled={
                             !isPlayersTurnIsOver ||
                             isPlayerBustedFlag ||
-                            isDoubleDownFlag
+                            isDoubleDownFlag ||
+                            isPlayerHaveBlackJack
                         }
                         innerText="stay"
                         color="color1"

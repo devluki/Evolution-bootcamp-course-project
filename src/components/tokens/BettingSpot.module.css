@@ -38,6 +38,10 @@
     animation: blink infinite 2s;
 }
 
+.mobileDisplay {
+    display: none;
+}
+
 @keyframes blink {
     0% {
         opacity: 0.7;
@@ -52,7 +56,13 @@
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-height: 600px) {
+    .mobileDisplay {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1024px) and (min-height: 900px) {
     .spot {
         height: 150px;
         width: 150px;
@@ -60,5 +70,8 @@
     .spot::before {
         width: 150px;
         height: 150px;
+    }
+    .mobileDisplay {
+        display: block;
     }
 }

@@ -3,10 +3,13 @@
     top: 35%;
     left: 0;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6em;
+    /* flex-direction: column; */
     transition: 1.5s;
     flex-wrap: wrap;
-    width: 50%;
+    width: 100%;
 }
 
 @media screen and (min-width: 1024px) {
@@ -15,5 +18,6 @@
         left: auto;
         top: auto;
         flex-direction: row;
+        margin-top: 0;
     }
 }

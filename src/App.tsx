@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-
+// import CanvasAnimation from "./components/CanvasAnimation";
 import { Player } from "./components/player/Player";
 import { Dealer } from "./components/dealer/Dealer";
 import { Message } from "./components/UI/Message";
@@ -52,13 +52,10 @@ function App() {
             <Dealer />
 
             {!isBetFlag && balance >= 5 && betHistory.length === 0 && (
-                <Message messageText="Place bet to start!" color="white" />
+                <Message messageText="Welcome, place your bet!" color="white" />
             )}
             {!isBetFlag && balance >= 5 && betHistory.length !== 0 && (
-                <Message
-                    messageText="Select deal to play the game!"
-                    color="white"
-                />
+                <Message messageText="Press deal to start!" color="white" />
             )}
 
             {!isBetFlag && balance < 5 && betHistory.length === 0 && (
@@ -77,6 +74,7 @@ function App() {
             {isDealersTurnIsOver && isPlayerWinsFlag && !isDealerBustedFlag && (
                 <Message messageText="Player win!" color="white" />
             )}
+            {/* <CanvasAnimation /> */}
             <Player />
             <BettingSpot />
             <div className="actions">

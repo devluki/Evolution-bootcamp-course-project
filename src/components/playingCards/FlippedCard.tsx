@@ -12,7 +12,9 @@ const FlippedCard: React.FC<FlippedCardProps> = ({ isStandFlag }) => {
             <div
                 className={`${styles.container} ${animation}`}
                 style={{ top: "5px", left: "35px" }}
-            ></div>
+            >
+                <div className={styles.reverse}></div>
+            </div>
         </>
     );
 };

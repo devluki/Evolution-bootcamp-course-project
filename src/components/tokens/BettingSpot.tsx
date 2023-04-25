@@ -26,7 +26,12 @@ export const BettingSpot = () => {
 
     return (
         <>
-            <div className={styles.container} onClick={increaseBetHandler}>
+            <div
+                className={`${styles.container} ${
+                    isBetFlag ? styles.mobileDisplay : ""
+                }`}
+                onClick={increaseBetHandler}
+            >
                 <div
                     className={`${styles.spot} ${
                         betHistory.length === 0 ? styles.animate : ""
