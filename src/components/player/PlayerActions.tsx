@@ -5,7 +5,8 @@ import { DELAY_TIME } from "../../models/consts";
 
 import { Button } from "../UI/Button";
 
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { OverlayCtx } from "../modal/ModalOverlay";
 
 import styles from "./PlayerActions.module.css";
 
@@ -14,6 +15,7 @@ interface PlayerActionsProps {
 }
 
 export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
+    const ctx = useContext(OverlayCtx);
     const dispatch = useDispatch();
     const {
         betHistory,
@@ -27,6 +29,7 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
         isDealersTurnIsOver,
         isDoubleDownFlag,
         isPlayerHaveBlackJack,
+        playerScore,
     } = useSelector((state: BlackJackState) => state);
 
     const init = () => {
@@ -35,11 +38,15 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
     };
 
     const hitHandler = () => {
-        dispatch({ type: "hit" });
-        dispatch({
-            type: "setPlayersTurnIsOver",
-            payload: { isOver: false },
-        });
+        if (playerScore >= 17) {
+            ctx.setIsVisible(true);
+        } else {
+            dispatch({ type: "hit" });
+            dispatch({
+                type: "setPlayersTurnIsOver",
+                payload: { isOver: false },
+            });
+        }
     };
     const stayHandler = () => {
         dispatch({ type: "setStandFlag" });

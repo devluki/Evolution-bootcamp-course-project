@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-// import CanvasAnimation from "./components/CanvasAnimation";
+import { OverlayProvider, ModalOverlay } from "./components/modal/ModalOverlay";
+
 import { Player } from "./components/player/Player";
 import { Dealer } from "./components/dealer/Dealer";
 import { Message } from "./components/UI/Message";
@@ -49,43 +50,53 @@ function App() {
 
     return (
         <div className="App">
-            <Dealer />
+            <OverlayProvider>
+                <Dealer />
 
-            {!isBetFlag && balance >= 5 && betHistory.length === 0 && (
-                <Message messageText="Welcome, place your bet!" color="white" />
-            )}
-            {!isBetFlag && balance >= 5 && betHistory.length !== 0 && (
-                <Message messageText="Press deal to start!" color="white" />
-            )}
+                {!isBetFlag && balance >= 5 && betHistory.length === 0 && (
+                    <Message
+                        messageText="Welcome, place your bet!"
+                        color="white"
+                    />
+                )}
+                {!isBetFlag && balance >= 5 && betHistory.length !== 0 && (
+                    <Message messageText="Press deal to start!" color="white" />
+                )}
 
-            {!isBetFlag && balance < 5 && betHistory.length === 0 && (
-                <Message
-                    messageText="Please buy tokens to continue!"
-                    color="white"
+                {!isBetFlag && balance < 5 && betHistory.length === 0 && (
+                    <Message
+                        messageText="Please buy tokens to continue!"
+                        color="white"
+                    />
+                )}
+                {!busted && isDealersTurnIsOver && isDrawFlag && (
+                    <Message messageText="Draw" color="white" />
+                )}
+
+                {isDealersTurnIsOver &&
+                    isDealerWinsFlag &&
+                    !isPlayerBustedFlag && (
+                        <Message messageText="Dealer win!" color="white" />
+                    )}
+                {isDealersTurnIsOver &&
+                    isPlayerWinsFlag &&
+                    !isDealerBustedFlag && (
+                        <Message messageText="Player win!" color="white" />
+                    )}
+                {/* <CanvasAnimation /> */}
+                <Player />
+                <BettingSpot />
+                <div className="actions">
+                    <TokenSelector />
+
+                    <PlayerActions isGameOver={isGamerOver} />
+                </div>
+                <BalanceIndicator
+                    currentBalance={balance}
+                    currentBetValue={currentBet}
                 />
-            )}
-            {!busted && isDealersTurnIsOver && isDrawFlag && (
-                <Message messageText="Draw" color="white" />
-            )}
-
-            {isDealersTurnIsOver && isDealerWinsFlag && !isPlayerBustedFlag && (
-                <Message messageText="Dealer win!" color="white" />
-            )}
-            {isDealersTurnIsOver && isPlayerWinsFlag && !isDealerBustedFlag && (
-                <Message messageText="Player win!" color="white" />
-            )}
-            {/* <CanvasAnimation /> */}
-            <Player />
-            <BettingSpot />
-            <div className="actions">
-                <TokenSelector />
-
-                <PlayerActions isGameOver={isGamerOver} />
-            </div>
-            <BalanceIndicator
-                currentBalance={balance}
-                currentBetValue={currentBet}
-            />
+                <ModalOverlay />
+            </OverlayProvider>
         </div>
     );
 }
