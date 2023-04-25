@@ -1,0 +1,161 @@
+.container {
+    /* background-color: black; */
+    /* background-image: linear-gradient(
+        to right top,
+        #000000,
+        #0a0708,
+        #110d10,
+        #151217,
+        #18171d,
+        #181a21,
+        #181d24,
+        #172027,
+        #162228,
+        #152528,
+        #162728,
+        #182927
+    ); */
+    background-image: linear-gradient(
+        to right top,
+        #00ffdd,
+        #00d2c5,
+        #00a5a8,
+        #007b85,
+        #15535e,
+        #1b414c,
+        #1c3139,
+        #192126,
+        #1b1f24,
+        #1c1e21,
+        #1d1d1f,
+        #1c1c1c
+    );
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.contentContainer {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    height: 60%;
+    max-width: 400px;
+    max-height: 500px;
+    background: rgba(0, 0, 0, 0.158);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.203);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    color: whitesmoke;
+    /* text-shadow: 1px -2px rgba(31, 38, 135, 0.37); */
+}
+
+.heading {
+    /* text-transform: uppercase; */
+    font-weight: bold;
+    text-align: center;
+    color: #abc4c0;
+    letter-spacing: 2px;
+    margin-top: 3%;
+}
+
+.txtGrad {
+    text-transform: uppercase;
+    position: relative;
+    font-weight: 900;
+    /* background: -webkit-linear-gradient(#82cac0, rgba(31, 38, 135)); */
+    background: -webkit-linear-gradient(#19626e 20%, #37c6ff93);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 0.5s;
+    font-style: italic;
+    animation: blink 3s infinite;
+}
+
+.upperCase {
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+/* .txtGrad::after {
+    background: none;
+
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    text-shadow: 0.1px 0.1px 20px #a2d8d149;
+    animation: blink 3s infinite;
+} */
+
+@keyframes blink {
+    0% {
+        background: -webkit-linear-gradient(#19626e 20%, #37c6ff93);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    15% {
+        background: -webkit-linear-gradient(#238594 20%, #75d8ff93);
+        -webkit-background-clip: text;
+
+        -webkit-text-fill-color: transparent;
+        text-shadow: none;
+    }
+    20% {
+        background: -webkit-linear-gradient(#19626e 20%, #37c6ff93);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    23% {
+        background: -webkit-linear-gradient(#238594 20%, #75d8ff93);
+        -webkit-background-clip: text;
+
+        -webkit-text-fill-color: transparent;
+        text-shadow: none;
+    }
+
+    26% {
+        background: -webkit-linear-gradient(#19626e 20%, #37c6ff93);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    30% {
+        background: -webkit-linear-gradient(#238594 20%, #75d8ff93);
+        -webkit-background-clip: text;
+
+        -webkit-text-fill-color: transparent;
+        text-shadow: none;
+    }
+    50% {
+        background: -webkit-linear-gradient(#19626e 20%, #37c6ff93);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .contentContainer {
+        position: absolute;
+        left: 50%;
+        top: 55%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 500px;
+    }
+}

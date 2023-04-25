@@ -8,8 +8,10 @@
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.5em;
-    color: #feffbf;
-    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.705);
+
+    color: #82cac0;
+
+    text-shadow: 2px 3px 0px #27434f;
     animation: fadeIn 1s ease-in;
 
     width: 100%;

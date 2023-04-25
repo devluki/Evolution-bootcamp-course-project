@@ -3,22 +3,28 @@
     z-index: 3;
     top: 70%;
     left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
-
+    height: 2em;
     transform: perspective(3000px) translate(-50%, -50%);
     padding: 0.3em 0.5em;
-
-    background: rgb(191, 164, 84);
+    background: #82cac0;
     box-shadow: inset 2px 4px 5px 0px #fffefcce, inset 0px 0px 5px 2px #1b1b1aa2,
         0px 10px 4px #1a1a1a;
-    background: linear-gradient(90deg, #e5d786 0%, #cc992e 35%);
+    background: linear-gradient(102deg, #82cac0 0%, #0b8473 35%);
+
+    animation: bounce 1s infinite;
     transition: 0.5s;
 }
 
 .txt {
     font-weight: bold;
     font-size: 1.5em;
-    color: #feffbf;
+
+    color: #fcfcfc;
+
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.705);
 }
 

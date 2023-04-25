@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.App {
+    text-align: center;
+    /* background-color: #235323; */
+    background-image: linear-gradient(
+        to right top,
+        #00ffdd,
+        #00d2c5,
+        #00a5a8,
+        #007b85,
+        #15535e,
+        #1b414c,
+        #1c3139,
+        #192126,
+        #1b1f24,
+        #1c1e21,
+        #1d1d1f,
+        #1c1c1c
+    );
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+    .actions {
+        flex-direction: row;
+        max-width: 1200px;
+        justify-content: center;
+    }
+}
