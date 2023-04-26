@@ -97,7 +97,7 @@ const Game = () => {
                 <div className="actions">
                     <TokenSelector />
 
-                    <PlayerActions isGameOver={isGamerOver} />
+                    <PlayerActions />
                 </div>
                 <BalanceIndicator
                     currentBalance={balance}

@@ -10,11 +10,7 @@ import { OverlayCtx } from "../modal/ModalOverlay";
 
 import styles from "./PlayerActions.module.css";
 
-interface PlayerActionsProps {
-    isGameOver: boolean;
-}
-
-export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
+export const PlayerActions = () => {
     const ctx = useContext(OverlayCtx);
     const dispatch = useDispatch();
     const {
@@ -106,7 +102,7 @@ export const PlayerActions: React.FC<PlayerActionsProps> = ({ isGameOver }) => {
                         <Button
                             onClick={undoBetHandler}
                             disabled={currentBet === 0}
-                            innerText="Undo"
+                            innerText="Undo bet"
                             color="color1"
                         />
 
