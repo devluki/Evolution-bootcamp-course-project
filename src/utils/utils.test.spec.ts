@@ -8,6 +8,7 @@ import {
     countHandScore,
     drawCard,
     isBusted,
+    isBlackJack,
 } from "./utils";
 
 describe("It should generate given amount of card decks", () => {
@@ -135,5 +136,30 @@ describe("It should check if player is busted", () => {
         const isBustedCheck = isBusted(score);
 
         expect(isBustedCheck).toBe(false);
+    });
+});
+describe("It should check if player have BlackJack", () => {
+    it("is should return false if player have more than two cards", () => {
+        const hand: Card[] = [new Card(2, 2), new Card(8, 1), new Card(10, 1)];
+
+        const isBlackJackCheck = isBlackJack(hand);
+
+        expect(isBlackJackCheck).toBe(false);
+    });
+    it("is should return false if player have two cards but score below 21", () => {
+        const hand: Card[] = [new Card(2, 2), new Card(10, 1)];
+
+        const isBlackJackCheck = isBlackJack(hand);
+
+        expect(isBlackJackCheck).toBe(false);
+    });
+    it("is should return true if player have two cards and score equals 21", () => {
+        const hand: Card[] = [new Card(1, 2), new Card(10, 1)];
+        // Need to run count fn in order to reassign ace score
+        countHandScore(hand);
+
+        const isBlackJackCheck = isBlackJack(hand);
+
+        expect(isBlackJackCheck).toBe(true);
     });
 });

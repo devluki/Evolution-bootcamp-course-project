@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 import { Token } from "./Tokes";
-import { TOKEN_DATA } from "../../utils/utils";
+import { TOKEN_DATA } from "../../models/consts";
 
 import styles from "./TokenSelector.module.css";
 

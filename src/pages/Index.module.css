@@ -32,8 +32,8 @@
     height: 60%;
     max-width: 400px;
     max-height: 500px;
-    background: rgba(0, 0, 0, 0.158);
-    box-shadow: 0 8px 32px 0 rgba(131, 142, 132, 0.203);
+    background: rgba(0, 0, 0, 0.107);
+    box-shadow: 0 8px 32px 0 rgba(124, 143, 125, 0.478);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border-radius: 10px;
