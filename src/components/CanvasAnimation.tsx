@@ -157,6 +157,19 @@ const CanvasAnimation = () => {
         readonly current: T | null;
     }
 
+    const [dimensions, setDimensions] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+
+    const handleResize = () => {
+        console.log(window.innerWidth, window.innerHeight);
+        setDimensions({
+            width: window.innerWidth,
+            height: window.innerHeight,
+        });
+    };
+
     const [isLoaded, setIsLoaded] = useState(false);
     const [isMouseOver, setIsMouseOver] = useState(false);
 
@@ -207,8 +220,8 @@ const CanvasAnimation = () => {
         const canvas = canvasRef.current as HTMLCanvasElement;
         const image = imgRef.current as HTMLImageElement;
 
-        canvas.height = window.innerHeight;
-        canvas.width = window.innerWidth;
+        canvas.height = dimensions.height;
+        canvas.width = dimensions.width;
 
         const ctx = getContext(canvasRef)!;
 
@@ -216,7 +229,7 @@ const CanvasAnimation = () => {
         effect.init(ctx);
         // console.log(effect);
         animate(effect, ctx, canvas.width, canvas.height);
-    }, [getContext, animate]);
+    }, [getContext, animate, dimensions]);
 
     useEffect(() => {
         handleAnimationLoading();
@@ -226,6 +239,12 @@ const CanvasAnimation = () => {
     const canvasLoad = !isLoaded ? classes.canvas : classes.canvasDisabled;
     const imageEnabled = isLoaded ? classes.imageEnabled : classes.image;
     // const imageEnabled = isLoaded ? classes.imageEnabled : classes.animation;
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, [animate]);
 
     return (
         <>
