@@ -113,7 +113,7 @@ export const drawWhileUnder17 = (shoe: Card[], hand: Card[], score: number) => {
         drawnCard.push(shoeCopy.pop() as Card);
 
         curScore = countHandScore([...hand, ...drawnCard]);
-        console.log(curScore);
+        // console.log(curScore);
     }
 
     return { shoeCopy, hand: [...hand, ...drawnCard] as Card[] };
@@ -134,11 +134,11 @@ export const isBlackJack = (hand: Card[]) => {
         hand[1].getScore === 11 || hand[1].getScore === 10;
     const difference = hand[0].getScore !== hand[1].getScore;
 
-    console.log(
-        "BLACKJACK???",
-        isFirstCardAceOrJack && isSecondCardAceOrJack,
-        hand,
-    );
+    // console.log(
+    //     "BLACKJACK???",
+    //     isFirstCardAceOrJack && isSecondCardAceOrJack,
+    //     hand,
+    // );
     return isFirstCardAceOrJack && isSecondCardAceOrJack && difference;
 };
 

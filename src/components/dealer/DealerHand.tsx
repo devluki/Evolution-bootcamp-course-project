@@ -38,8 +38,8 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
             if (curHand.length === dealerHand.length) return;
             if (i === 2 && isPlayerBustedFlag) return;
             let k: number = 0;
-            i === 1 ? (k = 0.5) : (k = i > 5 ? i - 1 : i); // WTF TODO -> refactor this to complex
-            console.log("Iterations:", i, k);
+            i === 1 ? (k = 0.5) : (k = i > 5 ? i - 1 : i); //  TODO -> refactor this, to complex!!
+            // console.log("Iterations:", i, k);
             dealayOutput(curHandHandler, i, k * DELAY_TIME);
         }
     }, [dealerHand]);
@@ -47,14 +47,8 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
     useEffect(() => {
         dealayOutput(curScoreHandler, curHand, DELAY_TIME);
 
-        console.log(curHand);
+        // console.log(curHand);
     }, [curHand]);
-
-    // useEffect(() => {
-    //     if (isStandFlag && curHand.length === dealerHand.length) {
-    //         dealayOutput(dispatchHandler, null, DELAY_TIME * 2);
-    //     }
-    // }, [curHand, isStandFlag]);
 
     useEffect(() => {
         if (dealerHand.length === 0) {

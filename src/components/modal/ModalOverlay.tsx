@@ -20,7 +20,7 @@ type Props = {
 let OverlayCtxInitial: OverlayCtx = {
     isVisible: false,
     setIsVisible: () => {
-        console.log("initial set is visible");
+        console.log("");
     },
 };
 

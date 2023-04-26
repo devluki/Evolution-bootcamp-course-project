@@ -31,7 +31,7 @@ export const Token: React.FC<TokenProps> = ({
         activeHandler();
         const value = e.currentTarget.innerText; //.textContent as String;
         setTokenValue(value);
-        console.log(value);
+        // console.log(value);
 
         dispatch({
             type: "setCurToken",

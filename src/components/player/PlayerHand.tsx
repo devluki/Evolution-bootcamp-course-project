@@ -23,7 +23,7 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
         for (let i = curHand.length; i < playerHand.length; i++) {
             if (curHand.length === playerHand.length) return;
             let k = i > 1 ? 0.5 : i;
-            console.log(isBetFlag, k, i);
+            // console.log(isBetFlag, k, i);
             setTimeout(() => {
                 setCurHand((prev) => [...prev, playerHand[i]]);
             }, k * 1000);

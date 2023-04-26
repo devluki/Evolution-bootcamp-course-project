@@ -163,7 +163,7 @@ const CanvasAnimation = () => {
     });
 
     const handleResize = () => {
-        console.log(window.innerWidth, window.innerHeight);
+        // console.log(window.innerWidth, window.innerHeight);
         setDimensions({
             width: window.innerWidth,
             height: window.innerHeight,

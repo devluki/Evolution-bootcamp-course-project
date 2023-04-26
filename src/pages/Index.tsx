@@ -22,7 +22,7 @@ export const Index = () => {
                         <span className={styles.upperCase}>BlackJack Game</span>
                     </h3>
                     <h3 className={styles.heading}>by</h3>
-                    <h3 className={styles.heading}>Łukasz Zabiegliński</h3>
+                    <h3 className={styles.heading}>Łukasz Z.</h3>
                     <Link to="./game" className={styles.btn}>
                         Play game
                     </Link>

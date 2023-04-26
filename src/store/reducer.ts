@@ -63,7 +63,7 @@ export function blackJakReducer(
             };
 
         case "setBetFlag":
-            console.log("State Redux", state);
+            // console.log("State Redux", state);
             const isBetFlag = true;
 
             return { ...state, isBetFlag };
@@ -81,7 +81,7 @@ export function blackJakReducer(
                 state.shoe,
                 state.playerHand,
             );
-            console.log(hand, state);
+            // console.log(hand, state);
             const playerScoreUpdated = countHandScore([...hand]);
             const isPlayerBusted = isBusted(playerScoreUpdated);
             const isGameOver = isPlayerBusted;
@@ -107,7 +107,7 @@ export function blackJakReducer(
             ]);
 
             const bustedDraw = isBusted(dealerScoreUpdatedDraw);
-            console.log("Busted draw", bustedDraw);
+            // console.log("Busted draw", bustedDraw);
             const isGameOverDraw = bustedDraw;
             return {
                 ...state,
@@ -120,7 +120,7 @@ export function blackJakReducer(
             };
         case "setCurToken":
             const curToken = action.payload.tokenValue;
-            console.log(curToken, "CurBET:", state.currentBet);
+            // console.log(curToken, "CurBET:", state.currentBet);
             return {
                 ...state,
                 selectedTokenVal: curToken,
@@ -139,12 +139,12 @@ export function blackJakReducer(
             const doubledBet = [...state.betHistory, ...state.betHistory];
             const doubledBetValue = doubledBet.reduce((acc, cur) => acc + cur);
             const balance = state.balance - doubledBetValue / 2;
-            console.log(
-                "Is player busted:",
-                state.isPlayerBustedFlag,
-                "playerScore",
-                state.playerScore,
-            );
+            // console.log(
+            //     "Is player busted:",
+            //     state.isPlayerBustedFlag,
+            //     "playerScore",
+            //     state.playerScore,
+            // );
 
             return {
                 ...state,
@@ -154,7 +154,7 @@ export function blackJakReducer(
             };
         case "undoBet":
             const lastBetValue = state.betHistory.pop() || 0;
-            console.log(lastBetValue, state.betHistory);
+            // console.log(lastBetValue, state.betHistory);
             const updatedCurBet = state.currentBet - lastBetValue;
             const balanceRestore = state.balance + lastBetValue;
 
@@ -175,7 +175,7 @@ export function blackJakReducer(
                 betHistory: [],
             };
         case "checkForWinners":
-            console.log(state.playerScore, state.dealerScore);
+            // console.log(state.playerScore, state.dealerScore);
             const isPlayerWin =
                 (!state.isPlayerBustedFlag &&
                     state.playerScore > state.dealerScore) ||
@@ -216,7 +216,7 @@ export function blackJakReducer(
             const newBalance = state.balance;
             return { ...initialState, balance: newBalance };
         case "getState":
-            console.log("FINAL STATE:", state);
+            // console.log("FINAL STATE:", state);
             return state;
         // case "setDealerHandCopleteFlag":
         //     return { ...state, isDealerHandCopmlete: true };

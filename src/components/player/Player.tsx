@@ -25,7 +25,7 @@ export const Player = () => {
 
     const curScoreHandler = (hand: Card[]) => {
         const curScore = countHandScore(hand);
-        console.log(curScore);
+        // console.log(curScore);
         setCurScore(curScore);
     };
 
