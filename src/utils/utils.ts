@@ -49,7 +49,7 @@ export const setHands = (shoe: Card[]) => {
 };
 
 // Count score of given array of Cards
-const count = (hand: Card[]) => {
+export const count = (hand: Card[]) => {
     let score = 0;
     for (let i = 0; i < hand.length; i++) {
         score += hand[i].getScore;
@@ -58,7 +58,7 @@ const count = (hand: Card[]) => {
 };
 
 // Checks if is Ace in hand - returns true/false and Ace index
-const isAceInHandCheck = (hand: Card[]) => {
+export const isAceInHandCheck = (hand: Card[]) => {
     let isAceInHand = false;
     const aceIndexes: number[] = [];
     for (let i = 0; i < hand.length; i++) {
