@@ -6,6 +6,8 @@ import {
     ModalOverlay,
 } from "../components/modal/ModalOverlay";
 
+import { Link } from "react-router-dom";
+
 import { Player } from "../components/player/Player";
 import { Dealer } from "../components/dealer/Dealer";
 import { Message } from "../components/UI/Message";
@@ -53,6 +55,9 @@ const Game = () => {
 
     return (
         <div className="App">
+            <Link to="/" className="linkBtn">
+                Main
+            </Link>
             <OverlayProvider>
                 <Dealer />
 

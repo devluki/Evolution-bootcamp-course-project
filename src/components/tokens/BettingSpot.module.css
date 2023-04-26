@@ -62,7 +62,7 @@
     }
 }
 
-@media screen and (min-width: 1024px) and (min-height: 900px) {
+@media screen and (min-width: 1024px) and (min-height: 700px) {
     .spot {
         height: 150px;
         width: 150px;

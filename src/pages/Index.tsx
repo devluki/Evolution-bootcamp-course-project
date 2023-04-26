@@ -1,4 +1,5 @@
 import CanvasAnimation from "../components/CanvasAnimation";
+import { Link } from "react-router-dom";
 import styles from "./Index.module.css";
 
 export const Index = () => {
@@ -22,6 +23,9 @@ export const Index = () => {
                     </h3>
                     <h3 className={styles.heading}>by</h3>
                     <h3 className={styles.heading}>Łukasz Zabiegliński</h3>
+                    <Link to="./game" className={styles.btn}>
+                        Play game
+                    </Link>
                 </div>
             </div>
         </>

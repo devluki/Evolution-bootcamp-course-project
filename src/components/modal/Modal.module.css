@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.91);
+    background-color: rgba(0, 0, 0, 0.61);
     z-index: 5;
     transition: 0.5s;
     text-align: center;
@@ -20,17 +20,12 @@
     align-items: center;
     width: 85%;
     height: 30%;
-    background: rgba(0, 0, 0, 0.373);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.892);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.473);
+    box-shadow: 0 18px 22px 10px rgba(131, 142, 132, 0.203);
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(4px);
     border-radius: 10px;
     color: whitesmoke;
-    /* background-color: #235323; */
-    /* background-color: #4a7f4a;
-    border-radius: 10px;
-    padding: 0% 5%;
-    box-shadow: 2px 2px 1px black; */
 }
 
 .actions {

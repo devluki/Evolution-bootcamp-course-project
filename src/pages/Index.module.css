@@ -1,34 +1,18 @@
 .container {
-    /* background-color: black; */
-    /* background-image: linear-gradient(
-        to right top,
-        #000000,
-        #0a0708,
-        #110d10,
-        #151217,
-        #18171d,
-        #181a21,
-        #181d24,
-        #172027,
-        #162228,
-        #152528,
-        #162728,
-        #182927
-    ); */
     background-image: linear-gradient(
         to right top,
-        #00ffdd,
-        #00d2c5,
-        #00a5a8,
-        #007b85,
-        #15535e,
-        #1b414c,
-        #1c3139,
-        #192126,
-        #1b1f24,
-        #1c1e21,
-        #1d1d1f,
-        #1c1c1c
+        #82b777,
+        #71a566,
+        #609456,
+        #508346,
+        #407236,
+        #37672e,
+        #2e5c25,
+        #25521d,
+        #214a19,
+        #1c4315,
+        #183b11,
+        #14340d
     );
     position: relative;
     width: 100vw;
@@ -39,7 +23,7 @@
 .contentContainer {
     position: absolute;
     left: 50%;
-    top: 60%;
+    top: calc(30% + 210px);
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
@@ -49,7 +33,7 @@
     max-width: 400px;
     max-height: 500px;
     background: rgba(0, 0, 0, 0.158);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.203);
+    box-shadow: 0 8px 32px 0 rgba(131, 142, 132, 0.203);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border-radius: 10px;
@@ -61,7 +45,7 @@
     /* text-transform: uppercase; */
     font-weight: bold;
     text-align: center;
-    color: #abc4c0;
+    color: #dff9d9;
     letter-spacing: 2px;
     margin-top: 3%;
 }
@@ -71,18 +55,75 @@
     position: relative;
     font-weight: 900;
     /* background: -webkit-linear-gradient(#82cac0, rgba(31, 38, 135)); */
-    background: -webkit-linear-gradient(#19626e 20%, #37c6ff93);
+    background: -webkit-linear-gradient(#dff9d9, #71a566 20%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: 0.5s;
     font-style: italic;
-    animation: blink 3s infinite;
+    /* animation: blink 3s infinite; */
 }
 
 .upperCase {
     text-transform: uppercase;
     font-weight: 900;
+}
+
+.btn {
+    /* margin: 10%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 200px;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    padding: 2% 4%;
+    margin: 0 auto;
+    margin-top: 10%;
+    height: 55px;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn:hover {
+    background-position: 100% 0;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    text-shadow: 1px 2px rgb(15, 52, 15);
+    box-shadow: 0 1px 15px 1px rgba(166, 232, 205, 0.75),
+        inset 0px 0px 2px 2px rgba(15, 52, 15, 0.549);
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn {
+    background-image: linear-gradient(
+        to right,
+        /* #0ba360,
+        #3cba92,
+        #30dd8a,
+        #2bb673 */ #609456,
+        #82b777,
+        #71a566,
+        #508346
+    );
+    box-shadow: 0 4px 15px 0px rgba(132, 206, 176, 0.151);
 }
 
 /* .txtGrad::after {
@@ -99,28 +140,28 @@
     animation: blink 3s infinite;
 } */
 
-@keyframes blink {
+/* @keyframes blink {
     0% {
-        background: -webkit-linear-gradient(#19626e 20%, #37c6ff93);
+        background: -webkit-linear-gradient(#71a566 20%, #407236);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
     }
     15% {
-        background: -webkit-linear-gradient(#238594 20%, #75d8ff93);
+        background: -webkit-linear-gradient(#71a566 20%, #72ca60);
         -webkit-background-clip: text;
 
         -webkit-text-fill-color: transparent;
         text-shadow: none;
     }
     20% {
-        background: -webkit-linear-gradient(#19626e 20%, #37c6ff93);
+        background: -webkit-linear-gradient(#71a566 20%, #407236);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
     }
     23% {
-        background: -webkit-linear-gradient(#238594 20%, #75d8ff93);
+        background: -webkit-linear-gradient(#71a566 20%, #72ca60);
         -webkit-background-clip: text;
 
         -webkit-text-fill-color: transparent;
@@ -128,32 +169,32 @@
     }
 
     26% {
-        background: -webkit-linear-gradient(#19626e 20%, #37c6ff93);
+        background: -webkit-linear-gradient(#71a566 20%, #407236);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     30% {
-        background: -webkit-linear-gradient(#238594 20%, #75d8ff93);
+        background: -webkit-linear-gradient(#71a566 20%, #72ca60);
         -webkit-background-clip: text;
 
         -webkit-text-fill-color: transparent;
         text-shadow: none;
     }
     50% {
-        background: -webkit-linear-gradient(#19626e 20%, #37c6ff93);
+        background: -webkit-linear-gradient(#71a566 20%, #407236);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
     }
-}
+} */
 
 @media screen and (min-width: 1024px) {
     .contentContainer {
         position: absolute;
         left: 50%;
-        top: 55%;
+        top: calc(30% + 2 * 126px);
         transform: translate(-50%, -50%);
         width: 400px;
         height: 500px;

@@ -1,4 +1,4 @@
-.btn {
+/* .btn {
     background-color: rgb(27, 47, 49, 0.6);
 
     display: flex;
@@ -56,6 +56,56 @@
     border-color: rgb(182, 70, 81);
     box-shadow: 0 0 8px 1px rgba(220, 53, 70, 0.375),
         0 0 7px 4px rgba(220, 53, 69, 0.7) inset;
+}
+
+.btn.disabled {
+    filter: brightness(40%);
+    pointer-events: none;
+}
+
+@media screen and (min-width: 1024px) {
+    .btn {
+        color: #fff;
+
+        text-shadow: -1px 2px black;
+
+        width: 180px;
+        padding: 2% 4%;
+        margin: 3% 1%;
+    }
+} */
+
+.btn {
+    color: red;
+    /* background-color: #48abe0; */
+    color: #fff;
+    text-shadow: -1px 2px black;
+    width: 140px;
+    padding: 1% 2%;
+    margin: 3% 0.5%;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 3px;
+    box-shadow: 0px 2px 4px black;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.btn:hover {
+    filter: drop-shadow(6px 6px 1px black);
+}
+
+.btn.color1 {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.btn.color2 {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn.color3 {
+    background-color: #248c46;
+    border-color: #248c46;
 }
 
 .btn.disabled {

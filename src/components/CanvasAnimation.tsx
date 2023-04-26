@@ -102,7 +102,7 @@ class Effect {
         this.centerY = this.height * 0.2; // top: 50%
         this.x = this.centerX - this.image.width * 0.5;
         this.y = this.centerY - this.image.height * 0.5;
-        this.gap = window.innerWidth < 790 ? 2 : 4;
+        this.gap = window.innerWidth < 790 ? 2 : 4; // Gap between particles
         this.mouse = {
             radius: 3000,
             x: undefined,
