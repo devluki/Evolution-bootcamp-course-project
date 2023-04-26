@@ -28,11 +28,11 @@ _(Description of the app functionality, form a user perspective, from highest to
 -   **As a user, I want to track current bet value, total win value.**
 -   **As a user, I want to track my wallet balance in real time.**
 -   **As a user, I want to track how much time spent on the game.**
--   As a user, I want to save a log of all of my games in my account (nice to have).
--   As a user, I want to keep my balance saved in my account (nice to have).
--   As a user, I want to choose a seat (nice to have).
--   As a user, I want to set min/max bets before the game (nice to have).
--   As a user, I want to add/withdraw founds.
+-   ~~As a user, I want to save a log of all of my games in my account (nice to have).~~
+-   ~~As a user, I want to keep my balance saved in my account (nice to have).~~
+-   ~~As a user, I want to choose a seat (nice to have).~~
+-   ~~As a user, I want to set min/max bets before the game (nice to have).~~
+-   ~~As a user, I want to add/withdraw founds.~~
 
 
 
@@ -40,10 +40,10 @@ _(Description of the app functionality, form a user perspective, from highest to
 
 | USER STORIES                                                                                                                    | FEATURES                                                                                                                                                                                                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| As a user, I want to save a log of all of my games in my account.<br/>As a user, I want to keep my balance saved in my account. | - Basic statistic no. of games, % of wins, % of loses. <br/>- **MVP:** Local storage (**Nice to have:** Firebase to store all necesary data). <br/>- **MVP:** Local storage (**Nice to have:** Firebase Auth REST API to perform users authentication).        |
-| As a user, I want to add/withdraw money.                                                                                        | **- DUMMY OPTION, no real payment method will be implemented.** <br/>- Balance storend in local state.<br/>- Basic form to add/subtract desirable amount from total balance value.<br/>- (**Nice to have:** Updates Firebase data when user leaves the table). |
-| As a user, I want to choose a seat                                                                                              | - **MVP:** Only one seat will be available, seat will be automatically chosen (**Nice to have:** user can select any given seat).                                                                                                                              |
-| As a user, I want to set min/max bets before the game                                                                           | - **MVP:** Constant values of min/max bets (**Nice to have:** user can select bets range before joining the game).                                                                                                                                             |
+| ~~As a user, I want to save a log of all of my games in my account.~~<br/>~~As a user, I want to keep my balance saved in my account.~~ | - Basic statistic no. of games, % of wins, % of loses. <br/>- **MVP:** Local storage (**Nice to have:** Firebase to store all necesary data). <br/>- **MVP:** Local storage (**Nice to have:** Firebase Auth REST API to perform users authentication).        |
+| ~~As a user, I want to add/withdraw money.~~                                                                                       | **-  ~~DUMMY OPTION, no real payment method will be implemented.~~** <br/>- Balance storend in local state.<br/>- ~~Basic form to add/subtract desirable amount from total balance value.~~<br/>- (**Nice to have:** Updates Firebase data when user leaves the table). |
+| ~~As a user, I want to choose a seat~~                                                                                              | - ~~**MVP:** Only one seat will be available, seat will be automatically chosen (**Nice to have:** user can select any given seat).~~                                                                                                                              |
+| ~~As a user, I want to set min/max bets before the game~~                                                                           | - ~~**MVP:** Constant values of min/max bets (**Nice to have:** user can select bets range before joining the game).~~                                                                                                                                           |
 | As a user, I want to track current bet value, total win value.                                                                  | - Current game data stored in state.                                                                                                                                                                                                                           |
 | As a user, I want to track how much time spent on the game.                                                                     | - Timer function value stored in state. Current valaue displayed on the screen                                                                                                                                                                                 |
 | As a user, I want to play classic BlackJack.                                                                                    | - **MVP:** Implementation basic rules according [BlackJack](https://en.wikipedia.org/wiki/Blackjack)                                                                                                                                                           |
