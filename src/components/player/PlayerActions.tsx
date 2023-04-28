@@ -137,7 +137,7 @@ export const PlayerActions = () => {
                             isDoubleDownFlag ||
                             isPlayerHaveBlackJack
                         }
-                        innerText="stay"
+                        innerText="stand"
                         color="color1"
                     />
                 )}
