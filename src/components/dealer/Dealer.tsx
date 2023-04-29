@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Card } from "../../models/cards";
 import { DealerHand } from "./DealerHand";
 import { countHandScore } from "../../utils/utils";
+import { DELAY_TIME } from "../../models/consts";
+import { dealayOutput } from "../../utils/utils";
 
 import { ScoreIndicator } from "../UI/ScoreIndicator";
 import { BlackJackIndicator } from "../UI/BlackJackIndicator";
@@ -20,6 +22,10 @@ export const Dealer = () => {
         setCurScore(curScore);
     };
 
+    const dealerTurnOverHandler = () => {
+        dispatch({ type: "setDealersTurnIsOver" });
+    };
+
     const {
         isStandFlag,
         dealerHand,
@@ -32,17 +38,13 @@ export const Dealer = () => {
     useEffect(() => {
         if (!isStandFlag) return;
         if (curScore === dealerScore && !isPlayerBustedFlag) {
-            setTimeout(() => {
-                dispatch({ type: "setDealersTurnIsOver" });
-            }, 2000);
+            dealayOutput(dealerTurnOverHandler, null, DELAY_TIME * 2);
         }
         if (
             isPlayerBustedFlag &&
             curScore === dealerHand[0].getScore + dealerHand[1].getScore
         ) {
-            setTimeout(() => {
-                dispatch({ type: "setDealersTurnIsOver" });
-            }, 2000);
+            dealayOutput(dealerTurnOverHandler, null, DELAY_TIME * 2);
         }
     }, [curScore]);
 

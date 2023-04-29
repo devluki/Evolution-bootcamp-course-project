@@ -1,4 +1,4 @@
-import CanvasAnimation from "../components/CanvasAnimation";
+import CanvasAnimation from "../components/canvasAnimation/CanvasAnimation";
 import { Link } from "react-router-dom";
 import styles from "./Index.module.css";
 
