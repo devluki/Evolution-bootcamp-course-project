@@ -16,7 +16,7 @@
     border: solid 1px black;
 
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    transition: transform 1.3s;
+    /* transition: transform 0.03s; */
     transform-style: preserve-3d;
     position: absolute;
 }
@@ -43,7 +43,7 @@
 }
 
 .rotate90 {
-    animation: rotate 1.5s;
+    animation: rotate 1.2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
@@ -58,7 +58,7 @@
     opacity: 0;
 
     filter: opacity(0.7);
-    transition: 0.6s;
+    transition: 0.3s;
 }
 
 .container:hover .acescore {
@@ -84,13 +84,13 @@
         margin-left: 500%;
         margin-top: -400%;
 
-        transform: rotate(160deg);
+        transform: perspective(500px) rotate(360deg);
     }
 
     to {
         margin-left: 25%;
         margin-top: 0%;
-        transform: rotate(90deg);
+        transform: perspective(500px) rotate(90deg);
     }
 }
 
@@ -121,29 +121,21 @@
 }
 
 .flip {
-    animation: flip 1s;
+    animation: flip 0.5s;
     transform-style: preserve-3d;
     /* animation-delay: 1s; */
-    transition: 0.2s;
+    /* transition: 0.2s; */
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 
 @keyframes flip {
     0% {
-        opacity: 0;
-        transform: rotateY(-90deg);
+        transform: perspective(500px) rotateY(90deg);
     }
-    50% {
-        opacity: 1;
-    }
-    52% {
-        transform: rotateY(0deg);
-        opacity: 1;
-    }
+
     100% {
-        transform: rotateY(0deg);
-        opacity: 1;
+        transform: perspective(500px) rotateY(0deg);
     }
 }
 
