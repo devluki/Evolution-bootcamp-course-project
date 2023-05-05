@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import PlaingCard from "../playingCards/PlayingCard";
 import FlippedCard from "../playingCards/FlippedCard";
@@ -23,24 +23,28 @@ export const DealerHand: React.FC<DealerHandProps> = ({ curScoreHandler }) => {
         isPlayerBustedFlag,
     } = useSelector((state: BlackJackState) => state);
 
-    const dispatch = useDispatch();
-
     const [curHand, setCurHand] = useState<Card[]>([]);
 
     const curHandHandler = (i: number) => {
         setCurHand((prev) => [...prev, dealerHand[i]]);
     };
 
+    // Deal cards with delay
+    // Delay time depends on current iteration:
+    // - first card is dealt  0 * 1000ms
+    // - second card is dealt 1 * 1000ms
+    // - third card is dealt 2 * 1000ms
+    // etc.
+
     useEffect(() => {
+        // Deals only two cards (i=0 and i=1) for dealer if player haven't decided what to do
         let noOfIterations = isStandFlag ? dealerHand.length : 1;
 
         for (let i = curHand.length; i < noOfIterations; i++) {
-            if (curHand.length === dealerHand.length) return;
-            if (i === 2 && isPlayerBustedFlag) return;
-            let k: number = 0;
-            i === 1 ? (k = 0.5) : (k = i > 5 ? i - 1 : i); //  TODO -> refactor this, to complex!!
-            // console.log("Iterations:", i, k);
-            dealayOutput(curHandHandler, i, k * DELAY_TIME);
+            if (curHand.length === dealerHand.length) return; // Check if current hand in UI equals dealer hand from Redux
+            if (i === 2 && isPlayerBustedFlag) return; // Check if player is busted
+
+            dealayOutput(curHandHandler, i, i * DELAY_TIME);
         }
     }, [dealerHand]);
 

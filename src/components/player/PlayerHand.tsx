@@ -17,16 +17,18 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({ curScoreHandler }) => {
 
     const [curHand, setCurHand] = useState<Card[]>([]);
 
-    // Rewrite for one card dealt, reset additional step for a//
+    const curHandHandler = (iteriation: number) => {
+        setCurHand((prev) => [...prev, playerHand[iteriation]]);
+    };
+
     // Updates UI hand in delay
     useEffect(() => {
         for (let i = curHand.length; i < playerHand.length; i++) {
             if (curHand.length === playerHand.length) return;
-            let k = i > 1 ? 0.5 : i;
-            // console.log(isBetFlag, k, i);
-            setTimeout(() => {
-                setCurHand((prev) => [...prev, playerHand[i]]);
-            }, k * 1000);
+            // Resets delay time after first two cards are dealt with delay 0 and 1 * DELAY_TIME
+            let delayFactor = i > 1 ? 0.5 : i;
+
+            dealayOutput(curHandHandler, i, delayFactor * DELAY_TIME);
         }
     }, [playerHand]);
 
