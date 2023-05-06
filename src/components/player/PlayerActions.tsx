@@ -36,6 +36,7 @@ export const PlayerActions = () => {
     const hitHandler = () => {
         if (playerScore >= 17) {
             ctx.setIsVisible(true);
+            ctx.setActionType("Hit");
         } else {
             dispatch({ type: "hit" });
             dispatch({
@@ -66,14 +67,21 @@ export const PlayerActions = () => {
     };
 
     const doubleDownHandler = () => {
-        dispatch({ type: "doubleBet" });
-        dispatch({ type: "setDoubleDownFlag" });
+        if (playerScore >= 17) {
+            ctx.setIsVisible(true);
+            ctx.setActionType("Double");
+        } else {
+            dispatch({ type: "doubleBet" });
+            dispatch({ type: "setDoubleDownFlag" });
 
-        setTimeout(() => {
-            dispatch({ type: "hit" });
-        }, 500);
+            dealayOutput(
+                () => dispatch({ type: "hit" }),
+                null,
+                0.5 * DELAY_TIME,
+            );
 
-        dealayOutput(stayHandler, null, DELAY_TIME * 3.5);
+            dealayOutput(stayHandler, null, DELAY_TIME * 3.5);
+        }
     };
 
     useEffect(() => {

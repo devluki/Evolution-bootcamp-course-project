@@ -13,12 +13,10 @@
 
     border-radius: 6px;
 
-    /* transition: transform 0.03s; */
     transform-style: preserve-3d;
 
     background-color: #ffffff;
 
-    transition: transform 1.3s;
     transform-style: preserve-3d;
 }
 
